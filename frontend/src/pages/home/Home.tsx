@@ -8,7 +8,6 @@ function Home() {
         Home Page
       </div>
       <HelloWorld/>
-      <a href="/test">This is the link for test page</a>
     </>
   );
 
