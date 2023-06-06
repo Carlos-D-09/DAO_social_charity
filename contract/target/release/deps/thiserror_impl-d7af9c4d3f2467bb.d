@@ -1,0 +1,12 @@
+/home/wada/pruebas/template_contract/target/release/deps/libthiserror_impl-d7af9c4d3f2467bb.so: /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/lib.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/ast.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/attr.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/expand.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/fmt.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/generics.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/prop.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/valid.rs
+
+/home/wada/pruebas/template_contract/target/release/deps/thiserror_impl-d7af9c4d3f2467bb.d: /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/lib.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/ast.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/attr.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/expand.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/fmt.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/generics.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/prop.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/valid.rs
+
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/lib.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/ast.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/attr.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/expand.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/fmt.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/generics.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/prop.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/thiserror-impl-1.0.40/src/valid.rs:

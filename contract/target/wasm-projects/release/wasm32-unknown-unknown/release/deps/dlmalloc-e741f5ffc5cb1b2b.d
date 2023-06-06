@@ -1,0 +1,12 @@
+/home/wada/pruebas/template_contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/dlmalloc-e741f5ffc5cb1b2b.rmeta: /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/lib.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/common.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlmalloc.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlverbose.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/global.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/wasm.rs
+
+/home/wada/pruebas/template_contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/libdlmalloc-e741f5ffc5cb1b2b.rlib: /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/lib.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/common.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlmalloc.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlverbose.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/global.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/wasm.rs
+
+/home/wada/pruebas/template_contract/target/wasm-projects/release/wasm32-unknown-unknown/release/deps/dlmalloc-e741f5ffc5cb1b2b.d: /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/lib.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/common.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlmalloc.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlverbose.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/global.rs /home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/wasm.rs
+
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/lib.rs:
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/common.rs:
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlmalloc.rs:
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/dlverbose.rs:
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/global.rs:
+/home/wada/.cargo/git/checkouts/dlmalloc-rust-80f9ff98f4270acf/9135baa/src/wasm.rs:

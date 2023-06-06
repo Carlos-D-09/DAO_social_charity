@@ -1,0 +1,12 @@
+/home/wada/pruebas/template_contract/target/release/deps/ahash-0d38f63281440cd5.rmeta: /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/lib.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/convert.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/fallback_hash.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/operations.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/random_state.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/specialize.rs
+
+/home/wada/pruebas/template_contract/target/release/deps/libahash-0d38f63281440cd5.rlib: /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/lib.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/convert.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/fallback_hash.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/operations.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/random_state.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/specialize.rs
+
+/home/wada/pruebas/template_contract/target/release/deps/ahash-0d38f63281440cd5.d: /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/lib.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/convert.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/fallback_hash.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/operations.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/random_state.rs /home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/specialize.rs
+
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/lib.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/convert.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/fallback_hash.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/operations.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/random_state.rs:
+/home/wada/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ahash-0.8.3/src/specialize.rs:

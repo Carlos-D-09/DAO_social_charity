@@ -1,0 +1,28 @@
+[dependencies.orig-project]
+default-features = false
+package = "dao"
+path = "/home/wada/pruebas/template_contract"
+
+[features]
+binary-vendor = ["orig-project/binary-vendor"]
+
+[lib]
+crate-type = ["cdylib"]
+name = "dao"
+
+[package]
+edition = "2021"
+name = "dao-wasm"
+version = "0.2.4"
+
+[profile.dev]
+opt-level = "s"
+
+[profile.production]
+inherits = "release"
+
+[profile.release]
+lto = true
+opt-level = "s"
+
+[workspace]
