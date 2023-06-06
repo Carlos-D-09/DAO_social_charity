@@ -3,4 +3,4 @@ contract/.binpath
 contract/*.txt
 contract/.metahash
 
-fronted/node_modules
+frontend/node_modules
