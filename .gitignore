@@ -1,1 +1,6 @@
 contract/target
+contract/.binpath
+contract/*.txt
+contract/.metahash
+
+fronted/node_modules
