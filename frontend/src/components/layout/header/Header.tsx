@@ -10,9 +10,8 @@ type Props = {
 function Header({ isAccountVisible }: Props) {
 	return (
 		<header className={styles.header}>
-			{/* <Logo /> */}
-			<h1 className={styles.logo}>WATTER SUPPORT</h1>
-			
+			<Logo />
+
 			{isAccountVisible && <Account />}
 		</header>
 	);

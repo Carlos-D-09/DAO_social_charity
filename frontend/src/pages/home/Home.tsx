@@ -1,5 +1,12 @@
+import { Enlace } from "Enlace";
+
 function Home() {
-	return <div>Home Page</div>;
+	return (
+		<>
+		<Enlace title="Water Statistics"/>
+			<div>hola</div>
+		</>
+	);
 }
 
 export { Home };

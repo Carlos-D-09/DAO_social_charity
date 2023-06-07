@@ -10,11 +10,10 @@ function Component() {
 	const { isAccountReady } = useAccount();
 
 	const isAppReady = isApiReady && isAccountReady;
-
 	return (
 		<>
 			<Header isAccountVisible={isAccountReady} />
-			<Enlace />
+			
 			<main>{isAppReady ? <Routing /> : <ApiLoader />}</main>
 			<Footer />
 		</>

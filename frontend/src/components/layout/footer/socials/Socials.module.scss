@@ -1,7 +1,7 @@
 .socials {
-  display: flex;
+	display: flex;
 
-  & > *:not(:last-child) {
-    margin-right: 24px;
-  }
+	& > *:not(:last-child) {
+		margin-right: 24px;
+	}
 }

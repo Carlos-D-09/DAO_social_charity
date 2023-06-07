@@ -3,7 +3,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 30px 0;
-	border-bottom: 4px solid rgb(48, 162, 255);
+	border-bottom: 4px solid rgb(12, 38, 80);
 }
 
 .button_style {
@@ -12,7 +12,8 @@
 }
 
 .logo {
-	background-color: rgb(48, 162, 255);
+	background-color: #c5e5f3;
+	color: rgb(12, 38, 80);
 	padding: 8px;
 	border-radius: 10px;
 }
@@ -25,4 +26,8 @@
 	margin: auto;
 	margin-top: 20px;
 	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
 }
