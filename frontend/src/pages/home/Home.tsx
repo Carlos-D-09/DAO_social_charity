@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import styles from "./Home.module.scss";
+import arrow from "../../assets/images/arrow.png";
 
 ChartJS.register(
 	CategoryScale,
@@ -32,7 +33,7 @@ export const options1 = {
 		},
 		title: {
 			display: true,
-			text: "Presion",
+			text: "Pressure",
 			padding: {
 				top: 10,
 				bottom: 30,
@@ -50,7 +51,7 @@ export const options2 = {
 		},
 		title: {
 			display: true,
-			text: "PH",
+			text: "pH",
 			padding: {
 				top: 10,
 				bottom: 30,
@@ -114,11 +115,14 @@ function Home() {
 		<>
 			<Enlace title="Water Statistics" />
 			<div className={styles.fondo}>
-				<Link to="/register">
-					<button className={styles.button} type="button">
-						Register
-					</button>
-				</Link>
+				<div className={styles.container_btn_register}>
+					<img className={styles.arrow} src={arrow} alt="" />
+					<Link to="/register">
+						<button className={styles.button} type="button">
+							Register
+						</button>
+					</Link>
+				</div>
 				<Line
 					style={{ marginBottom: "200px" }}
 					options={options1}

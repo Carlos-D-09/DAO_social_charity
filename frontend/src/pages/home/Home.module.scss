@@ -17,18 +17,51 @@
 .button {
 	padding: 17px;
 	border-radius: 8px;
-	background-color: rgb(48, 162, 255);
-	border: none;
+	// background-color: rgb(48, 162, 255);
+	background: none;
+	border: 3px solid rgb(48, 162, 255);
 	// border: 4px 4px 1.5px 1.5px solid rgb(48, 162, 255);
 	width: 13rem;
 	color: #ececec;
 	font-weight: bold;
 	font-size: 19px;
-	margin: 5px 0 50px 0;
+
+	position: relative;
+	overflow: hidden;
+}
+
+.container_btn_register {
+	margin: 10px 0 50px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.arrow {
+	width: 20px;
+}
+
+.button::before {
+	content: "";
+	width: 20px;
+	position: absolute;
+	height: 0%;
+	width: 100%;
+	left: 0;
+	background: #0c2650;
+	z-index: -1;
+	transition: 0.8s;
+	top: 0;
+	border-radius: 0 0 50% 50%;
 }
 
 .button:hover {
-	background-color: #0c2650;
-	box-shadow: 5px 3px 3px 0.5px #225097;
 	cursor: pointer;
+}
+
+.button:hover::before {
+	// background-color: #0c2650;
+	// box-shadow: 5px 3px 3px 0.5px #225097;
+	height: 100%;
 }
