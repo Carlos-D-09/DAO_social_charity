@@ -1,4 +1,5 @@
 import { Enlace } from "Enlace";
+import { Link } from "react-router-dom";
 import faker from "faker";
 import {
 	Chart as ChartJS,
@@ -113,7 +114,16 @@ function Home() {
 		<>
 			<Enlace title="Water Statistics" />
 			<div className={styles.fondo}>
-				<Line options={options1} data={data1} />
+				<Link to="/register">
+					<button className={styles.button} type="button">
+						Register
+					</button>
+				</Link>
+				<Line
+					style={{ marginBottom: "200px" }}
+					options={options1}
+					data={data1}
+				/>
 				<Line options={options2} data={data2} />
 			</div>
 		</>

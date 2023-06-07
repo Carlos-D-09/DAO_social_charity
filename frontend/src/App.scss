@@ -49,3 +49,60 @@ body {
 button {
 	background-color: #8186d5;
 }
+.waves {
+	position: absolute;
+	z-index: -1;
+	filter: opacity(0.2) drop-shadow(0 0 0 #249cd1);
+	width: 200px;
+}
+
+.waves:nth-child(2) {
+	width: 100px;
+	top: 10vh;
+	left: 400px;
+}
+.waves:nth-child(3) {
+	width: 80px;
+	top: 500px;
+	left: 100px;
+}
+.waves:nth-child(4) {
+	width: 120px;
+	top: 500px;
+	left: 700px;
+}
+.waves:nth-child(5) {
+	width: 120px;
+	top: 1500px;
+	left: 1400px;
+}
+.waves:nth-child(6) {
+	width: 100px;
+	top: 200px;
+	left: 1300px;
+}
+.waves:nth-child(7) {
+	width: 140px;
+	top: 1000px;
+	left: 300px;
+}
+.waves:nth-child(8) {
+	width: 120px;
+	top: 1400px;
+	left: 300px;
+}
+.waves:nth-child(9) {
+	width: 90px;
+	top: 900px;
+	left: 800px;
+}
+.waves:nth-child(10) {
+	width: 190px;
+	top: 500px;
+	left: 1800px;
+}
+.waves:nth-child(11) {
+	width: 140px;
+	top: 1200px;
+	left: 1800px;
+}
