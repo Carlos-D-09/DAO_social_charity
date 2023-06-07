@@ -15,7 +15,7 @@ use primitive_types::H256;
 pub struct NFTMetadata;
 
 impl Metadata for NFTMetadata {
-    type Init = ();
+    type Init = In<InitNFT>;
     type Handle = InOut<NFTAction, NFTEvent>;
     type Reply = ();
     type Others = ();
@@ -53,15 +53,17 @@ pub enum NFTAction {
     },
 }
 
-// #[derive(Debug, Encode, Decode, TypeInfo)]
-// #[codec(crate = gstd::codec)]
-// #[scale_info(crate = gstd::scale_info)]
-// pub struct InitNFT {
-//     pub name: String,
-//     pub symbol: String,
-//     pub base_uri: String,
-//     pub royalties: Option<Royalties>,
-// }
+#[derive(Debug, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct InitNFT {
+    pub name: String,
+    pub addres: String,
+    pub water_flow: i32,
+    pub date: String,
+    pub ph: i32,
+    pub royalties: Option<Royalties>,
+}
 
 #[derive(Encode, Decode, TypeInfo, Debug, Clone)]
 #[codec(crate = gstd::codec)]
@@ -104,6 +106,10 @@ pub struct IoNFT {
     pub token_id: TokenId,
     pub owner: ActorId,
     pub transactions: Vec<(H256, NFTEvent)>,
+    pub addres: String,
+    pub water_flow: i32,
+    pub date: String,
+    pub ph: i32,
 }
 
 impl From<&NFTState> for IoNFTState {

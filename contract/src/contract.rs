@@ -3,7 +3,7 @@ use gear_lib_derive::{NFTCore, NFTMetaState, NFTStateKeeper};
 use gmeta::Metadata;
 use gstd::{errors::Result as GstdResult, exec, msg, prelude::*, ActorId, MessageId};
 use hashbrown::HashMap;
-use nft_io::{InitNFT, IoNFT, NFTAction, NFTEvent, NFTMetadata};
+use nft_io::{IoNFT, NFTAction, NFTEvent, NFTMetadata};
 use primitive_types::{H256, U256};
 
 #[derive(Debug, Default, NFTStateKeeper, NFTCore, NFTMetaState)]
@@ -14,17 +14,15 @@ pub struct Nft {
     pub owner: ActorId,
     pub transactions: HashMap<H256, NFTEvent>,
     pub addres: String,
-    pub water_flow: f32,
+    pub water_flow: i32,
     pub date: String,
-    pub ph: f32,
+    pub ph: i32,
 }
 
 static mut CONTRACT: Option<Nft> = None;
 
 #[no_mangle]
-unsafe extern "C" fn init() {
-
-}
+unsafe extern "C" fn init() {}
 
 #[no_mangle]
 unsafe extern "C" fn handle() {
@@ -174,17 +172,25 @@ impl From<&Nft> for IoNFT {
             token_id,
             owner,
             transactions,
+            addres,
+            water_flow,
+            date,
+            ph,
         } = value;
-
+        
         let transactions = transactions
-            .iter()
-            .map(|(key, event)| (*key, event.clone()))
-            .collect();
+        .iter()
+        .map(|(key, event)| (*key, event.clone()))
+        .collect();
         Self {
             token: token.into(),
             token_id: *token_id,
             owner: *owner,
             transactions,
+            addres: addres.to_string(),
+            water_flow: *water_flow,
+            date: date.to_string(),
+            ph: *ph,
         }
     }
 }
