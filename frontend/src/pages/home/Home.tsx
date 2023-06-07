@@ -1,16 +1,5 @@
-import { HelloWorld } from './HelloWorld';
-
 function Home() {
-
-  return (
-    <>
-      <div>
-        Home Page
-      </div>
-      <HelloWorld/>
-    </>
-  );
-
+	return <div>Home Page</div>;
 }
 
 export { Home };

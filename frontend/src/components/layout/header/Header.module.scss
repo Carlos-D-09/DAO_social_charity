@@ -1,6 +1,28 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px 0;
+	border-bottom: 4px solid rgb(48, 162, 255);
+}
+
+.button_style {
+	color: var(--text-color);
+	background-color: var(--second-color);
+}
+
+.logo {
+	background-color: rgb(48, 162, 255);
+	padding: 8px;
+	border-radius: 10px;
+}
+
+.link_style {
+	border-top: 1px solid rgb(48, 162, 255);
+	border-bottom: 1px solid rgb(48, 162, 255);
+	// background-color: red;
+	font-weight: 700;
+	margin: auto;
+	margin-top: 20px;
+	font-size: 30px;
 }

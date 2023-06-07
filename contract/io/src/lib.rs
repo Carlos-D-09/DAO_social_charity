@@ -15,7 +15,7 @@ use primitive_types::H256;
 pub struct NFTMetadata;
 
 impl Metadata for NFTMetadata {
-    type Init = In<InitNFT>;
+    type Init = ();
     type Handle = InOut<NFTAction, NFTEvent>;
     type Reply = ();
     type Others = ();
@@ -40,31 +40,12 @@ pub enum NFTAction {
         to: ActorId,
         token_id: TokenId,
     },
-    TransferPayout {
-        transaction_id: u64,
-        to: ActorId,
-        token_id: TokenId,
-        amount: u128,
-    },
-    NFTPayout {
-        owner: ActorId,
-        amount: u128,
-    },
     Approve {
         transaction_id: u64,
         to: ActorId,
         token_id: TokenId,
     },
-    DelegatedApprove {
-        transaction_id: u64,
-        message: DelegatedApproveMessage,
-        signature: [u8; 64],
-    },
     Owner {
-        token_id: TokenId,
-    },
-    IsApproved {
-        to: ActorId,
         token_id: TokenId,
     },
     Clear {
@@ -72,15 +53,15 @@ pub enum NFTAction {
     },
 }
 
-#[derive(Debug, Encode, Decode, TypeInfo)]
-#[codec(crate = gstd::codec)]
-#[scale_info(crate = gstd::scale_info)]
-pub struct InitNFT {
-    pub name: String,
-    pub symbol: String,
-    pub base_uri: String,
-    pub royalties: Option<Royalties>,
-}
+// #[derive(Debug, Encode, Decode, TypeInfo)]
+// #[codec(crate = gstd::codec)]
+// #[scale_info(crate = gstd::scale_info)]
+// pub struct InitNFT {
+//     pub name: String,
+//     pub symbol: String,
+//     pub base_uri: String,
+//     pub royalties: Option<Royalties>,
+// }
 
 #[derive(Encode, Decode, TypeInfo, Debug, Clone)]
 #[codec(crate = gstd::codec)]
