@@ -1,129 +1,148 @@
 #![no_std]
 
 use gear_lib::non_fungible_token::{
-    state::NFTQueryReply,
-    token::{Token, TokenId},
+    io::{NFTApproval, NFTTransfer, NFTTransferPayout},
+    royalties::*,
+    state::NFTState,
+    token::*,
 };
-use gmeta::{metawasm, Metadata};
-use gstd::{ActorId, Vec};
-use nft_io::NFTMetadata;
+use gmeta::{In, InOut, Metadata};
+use gstd::{prelude::*, ActorId};
 
-#[metawasm]
-pub mod metafns {
-    pub type State = <NFTMetadata as Metadata>::State;
+pub use gear_lib::non_fungible_token::delegated::DelegatedApproveMessage;
+use primitive_types::H256;
 
-    pub fn info(state: State) -> NFTQueryReply {
-        NFTQueryReply::NFTInfo {
-            name: state.token.name.clone(),
-            symbol: state.token.symbol.clone(),
-            base_uri: state.token.base_uri,
-        }
-    }
+pub struct NFTMetadata;
 
-    pub fn token(state: State, token_id: TokenId) -> Token {
-        token_helper(&token_id, &state)
-    }
-
-    pub fn tokens_for_owner(state: State, owner: ActorId) -> Vec<Token> {
-        let mut tokens: Vec<Token> = Vec::new();
-        if let Some((_owner, token_ids)) = state
-            .token
-            .tokens_for_owner
-            .iter()
-            .find(|(id, _tokens)| owner.eq(id))
-        {
-            for token_id in token_ids {
-                tokens.push(token_helper(token_id, &state));
-            }
-        }
-        tokens
-    }
-    pub fn total_supply(state: State) -> u128 {
-        state.token.owner_by_id.len() as u128
-    }
-
-    pub fn supply_for_owner(state: State, owner: ActorId) -> u128 {
-        let tokens = state
-            .token
-            .tokens_for_owner
-            .iter()
-            .find(|(id, _tokens)| owner.eq(id));
-
-        tokens
-            .map(|(_id, tokens)| tokens.len() as u128)
-            .unwrap_or(0)
-    }
-
-    pub fn all_tokens(state: State) -> Vec<Token> {
-        state
-            .token
-            .owner_by_id
-            .iter()
-            .map(|(id, _owner)| token_helper(id, &state))
-            .collect()
-    }
-
-    pub fn token_by_id(state: State, id: TokenId) -> Option<Token> {
-        state
-            .token
-            .owner_by_id
-            .iter()
-            .find(|(i, _)| id.eq(i))
-            .map(|(token_id, _)| token_helper(token_id, &state))
-    }
-
-    pub fn approved_tokens(state: State, account: ActorId) -> Vec<Token> {
-        state
-            .token
-            .owner_by_id
-            .iter()
-            .filter_map(|(id, _owner)| {
-                state
-                    .token
-                    .token_approvals
-                    .iter()
-                    .find(|(token_id, _approvals)| token_id.eq(id))
-                    .and_then(|(_token_id, approvals)| {
-                        if approvals.contains(&account) {
-                            Some(token_helper(id, &state))
-                        } else {
-                            None
-                        }
-                    })
-            })
-            .collect()
-    }
+impl Metadata for NFTMetadata {
+    type Init = In<InitNFT>;
+    type Handle = InOut<NFTAction, NFTEvent>;
+    type Reply = ();
+    type Others = ();
+    type Signal = ();
+    type State = IoNFT;
 }
 
-fn token_helper(token_id: &TokenId, state: &<NFTMetadata as Metadata>::State) -> Token {
-    let mut token = Token::default();
-    if let Some((_token_id, owner_id)) = state
-        .token
-        .owner_by_id
-        .iter()
-        .find(|(id, _metadata)| token_id.eq(id))
-    {
-        token.id = *token_id;
-        token.owner_id = *owner_id;
+#[derive(Debug, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub enum NFTAction {
+    Mint {
+        transaction_id: u64,
+        token_metadata: TokenMetadata,
+    },
+    Burn {
+        transaction_id: u64,
+        token_id: TokenId,
+    },
+    Transfer {
+        transaction_id: u64,
+        to: ActorId,
+        token_id: TokenId,
+    },
+    Owner {
+        token_id: TokenId,
+    },
+    Clear {
+        transaction_hash: H256,
+    },
+}
+
+#[derive(Debug, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct InitNFT {
+    pub name: String,
+    pub symbol: String,
+    pub base_uri: String,
+    pub royalties: Option<Royalties>,
+}
+
+#[derive(Encode, Decode, TypeInfo, Debug, Clone)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub enum NFTEvent {
+    Transfer(NFTTransfer),
+    TransferPayout(NFTTransferPayout),
+    NFTPayout(Payout),
+    Approval(NFTApproval),
+    Owner {
+        owner: ActorId,
+        token_id: TokenId,
+    },
+    IsApproved {
+        to: ActorId,
+        token_id: TokenId,
+        approved: bool,
+    },
+}
+
+#[derive(Debug, Clone, Default, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct IoNFTState {
+    pub name: String,
+    pub symbol: String,
+    pub base_uri: String,
+    pub owner_by_id: Vec<(TokenId, ActorId)>,
+    pub token_approvals: Vec<(TokenId, Vec<ActorId>)>,
+    pub token_metadata_by_id: Vec<(TokenId, Option<TokenMetadata>)>,
+    pub tokens_for_owner: Vec<(ActorId, Vec<TokenId>)>,
+    pub royalties: Option<Royalties>,
+}
+
+#[derive(Debug, Clone, Default, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct IoNFT {
+    pub token: IoNFTState,
+    pub token_id: TokenId,
+    pub owner: ActorId,
+    pub transactions: Vec<(H256, NFTEvent)>,
+}
+
+impl From<&NFTState> for IoNFTState {
+    fn from(value: &NFTState) -> Self {
+        let NFTState {
+            name,
+            symbol,
+            base_uri,
+            owner_by_id,
+            token_approvals,
+            token_metadata_by_id,
+            tokens_for_owner,
+            royalties,
+        } = value;
+
+        let owner_by_id = owner_by_id
+            .iter()
+            .map(|(hash, actor_id)| (*hash, *actor_id))
+            .collect();
+
+        let token_approvals = token_approvals
+            .iter()
+            .map(|(key, approvals)| (*key, approvals.iter().copied().collect()))
+            .collect();
+
+        let token_metadata_by_id = token_metadata_by_id
+            .iter()
+            .map(|(id, metadata)| (*id, metadata.clone()))
+            .collect();
+
+        let tokens_for_owner = tokens_for_owner
+            .iter()
+            .map(|(id, tokens)| (*id, tokens.clone()))
+            .collect();
+
+        Self {
+            name: name.clone(),
+            symbol: symbol.clone(),
+            base_uri: base_uri.clone(),
+            owner_by_id,
+            token_approvals,
+            token_metadata_by_id,
+            tokens_for_owner,
+            royalties: royalties.clone(),
+        }
     }
-    if let Some((_token_id, approved_account_ids)) = state
-        .token
-        .token_approvals
-        .iter()
-        .find(|(id, _metadata)| token_id.eq(id))
-    {
-        token.approved_account_ids = approved_account_ids.iter().copied().collect();
-    }
-    if let Some((_token_id, Some(metadata))) = state
-        .token
-        .token_metadata_by_id
-        .iter()
-        .find(|(id, _metadata)| token_id.eq(id))
-    {
-        token.name = metadata.name.clone();
-        token.description = metadata.description.clone();
-        token.media = metadata.media.clone();
-        token.reference = metadata.reference.clone();
-    }
-    token
 }
