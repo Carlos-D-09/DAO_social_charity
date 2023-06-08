@@ -1,29 +1,15 @@
 <p align="center">
-  <a href="https://gitpod.io/#https://github.com/gear-dapps/non-fungible-token" target="_blank">
-    <img src="https://gitpod.io/button/open-in-gitpod.svg" width="240" alt="Gitpod">
+  <a>
+    <img src="../frontend/src/assets/images/Logo_water_support_sf_1.png" width="400" alt="Water Support">
   </a>
 </p>
+<p align="center">
+    <a href="https://github.com/gear-tech/gear-js/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-GPL%203.0-success"></a>
+</p>
+<hr>
 
-# Non Fungible token
-
-[![Build][build_badge]][build_href]
-[![License][lic_badge]][lic_href]
-[![Docs][docs_badge]][docs_href]
-
-[build_badge]: https://github.com/gear-dapps/non-fungible-token/workflows/Build/badge.svg
-[build_href]: https://github.com/gear-dapps/non-fungible-token/actions/workflows/build.yml
-
-[lic_badge]: https://img.shields.io/badge/License-MIT-success
-[lic_href]: https://github.com/gear-dapps/non-fungible-token/blob/master/LICENSE
-
-[docs_badge]: https://img.shields.io/badge/Docs-online-5023dd
-[docs_href]: https://dapp.rs/non-fungible-token
-
-An example of simple NFT.
-
-## Prebuilt Binaries
-
-Raw, optimized, and meta WASM binaries can be found in the [Releases section](https://github.com/gear-dapps/non-fungible-token/releases).
+## Description
+Smart contract made for the Water Support dApp.
 
 ## Building Locally
 
@@ -40,46 +26,10 @@ rustup toolchain add nightly
 rustup target add wasm32-unknown-unknown --toolchain nightly
 ```
 
-... or ...
-
-```shell
-make init
-```
-
 ### 🏗️ Build
 
 ```shell
 cargo build --release
-```
-
-... or ...
-
-```shell
-make build
-```
-
-### ✅ Run tests
-
-```shell
-cargo test --release
-```
-
-... or ...
-
-```shell
-make test
-```
-
-### 🚀 Run everything with one command
-
-```shell
-make all
-```
-
-... or just ...
-
-```shell
-make
 ```
 
 ## License
