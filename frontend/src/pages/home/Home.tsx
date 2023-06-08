@@ -21,6 +21,8 @@ import { Line } from "react-chartjs-2";
 import styles from "./Home.module.scss";
 import arrow from "../../assets/images/arrow.png";
 import { NFT } from "./nft/nft";
+import { GetAllExtrinsics } from "components/GetAllExtrinsics";
+import { SendMessage } from "components/SendMessage";
 
 ChartJS.register(
 	CategoryScale,
@@ -184,6 +186,8 @@ function Home() {
 				) : (
 					<Loader />
 				)}
+				<SendMessage/>
+				<GetAllExtrinsics/>
 			</div>
 			<div className={styles.fondo}>
 				<div className={styles.container_btn_register}>
