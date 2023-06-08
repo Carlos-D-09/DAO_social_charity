@@ -186,8 +186,8 @@ function Home() {
 				) : (
 					<Loader />
 				)}
-				<SendMessage />
-				<GetAllExtrinsics />
+				{/* 				<SendMessage />
+				<GetAllExtrinsics /> */}
 			</div>
 			<div className={styles.fondo}>
 				<div className={styles.container_btn_register}>

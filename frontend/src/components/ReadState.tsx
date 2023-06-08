@@ -9,6 +9,19 @@ function ReadState() {
 
 	const alert = useAlert();
 
+	/* 	const emptyState: StateType = {
+		name: String,
+		description: String,
+		media: String,
+		token: undefined,
+		tokenId: 0,
+		owner: "",
+		transactions: [],
+	}; */
+
+	/* 	const [fullState, setFullState] =
+		useState<StateType>(emptyState); */
+
 	const [fullState, setFullState] = useState<AnyJson>();
 
 	const codeId =
@@ -26,10 +39,44 @@ function ReadState() {
 			const result = await api.programState.read({ programId }, metadata);
 			setFullState(result.toJSON());
 			alert.success("Successful state");
+			// const data = result.;
 		} catch (error: any) {
 			alert.error(error.message);
 		}
 	};
+
+	/*   const getSpecificData = () => {
+    if (fullState && fullState.name) {
+      return fullState.name.exampleData; // Reemplaza "exampleData" con el nombre de tu dato específico
+    }
+    return '';
+  }; */
+
+	/* 	const getSpecificValue = () => {
+		if (fullState && fullState.token && fullState.token.name) {
+			return fullState.token.name; // Obtiene el valor de la propiedad "name" del objeto "token"
+		}
+		return "";
+	}; */
+
+	/* 	const getTokenName = () => {
+		if (fullState && fullState.token && fullState.token.name) {
+			return fullState.token.name;
+		}
+		return "";
+	};
+
+	const getTokenMetadataDescription = () => {
+		if (
+			fullState &&
+			fullState.token &&
+			fullState.token.tokenMetadataById &&
+			fullState.token.tokenMetadataById[0]
+		) {
+			return fullState.token.tokenMetadataById[0][1].description;
+		}
+		return "";
+	}; */
 
 	return (
 		<div className="container">
@@ -37,7 +84,10 @@ function ReadState() {
 			<center className="state">
 				State
 				<p className="text"> {JSON.stringify(fullState)}</p>
+				{/* 				<p>Token Name: {getTokenName()}</p>
+				<p>Token Metadata Description: {getTokenMetadataDescription()}</p> */}
 			</center>
+			{/* <p>{fullState.}</p> */}
 			<Button text="Get Full State" onClick={getState} />
 		</div>
 	);
