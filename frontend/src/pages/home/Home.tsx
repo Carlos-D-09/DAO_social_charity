@@ -1,5 +1,9 @@
 import { Enlace } from "Enlace";
+import { ReadState } from "components/ReadState";
 import { Link } from "react-router-dom";
+import { GearApi } from "@gear-js/api";
+import { useState } from "react";
+import { Button } from "@gear-js/ui";
 import faker from "faker";
 import {
 	Chart as ChartJS,
@@ -13,6 +17,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import styles from "./Home.module.scss";
+import arrow from "../../assets/images/arrow.png";
 
 ChartJS.register(
 	CategoryScale,
@@ -32,7 +37,7 @@ export const options1 = {
 		},
 		title: {
 			display: true,
-			text: "Presion",
+			text: "Pressure",
 			padding: {
 				top: 10,
 				bottom: 30,
@@ -50,7 +55,7 @@ export const options2 = {
 		},
 		title: {
 			display: true,
-			text: "PH",
+			text: "pH",
 			padding: {
 				top: 10,
 				bottom: 30,
@@ -110,15 +115,46 @@ export const data2 = {
 	],
 };
 function Home() {
+	const [chainData, setChain] = useState<string>();
+	const [nodeNameData, setNodeName] = useState<string>();
+	const [nodeVersionData, setNodeVersion] = useState<string>();
+
+	const nodeInformation = async () => {
+		const gearApi = await GearApi.create({
+			providerAddress: "wss://rpc-node.gear-tech.io",
+		});
+
+		const [chain, nodeName, nodeVersion] = await Promise.all([
+			gearApi.chain(),
+			gearApi.nodeName(),
+			gearApi.nodeVersion(),
+		]);
+
+		setChain(chain);
+		setNodeName(nodeName);
+		setNodeVersion(nodeVersion);
+	};
+
 	return (
 		<>
 			<Enlace title="Water Statistics" />
+			<div className="card">
+				<h3>Node Data</h3>
+				<p>Red: {chainData}</p>
+				<p>Nodo: {nodeNameData}</p>
+				<p>Version del nodo:{nodeVersionData}</p>
+				<Button text="Get Node Information" onClick={nodeInformation} />
+				<ReadState />
+			</div>
 			<div className={styles.fondo}>
-				<Link to="/register">
-					<button className={styles.button} type="button">
-						Register
-					</button>
-				</Link>
+				<div className={styles.container_btn_register}>
+					<img className={styles.arrow} src={arrow} alt="" />
+					<Link to="/register">
+						<button className={styles.button} type="button">
+							Register
+						</button>
+					</Link>
+				</div>
 				<Line
 					style={{ marginBottom: "200px" }}
 					options={options1}

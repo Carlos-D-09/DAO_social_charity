@@ -1,9 +1,10 @@
 const ADDRESS = {
-  NODE: process.env.REACT_APP_NODE_ADDRESS as string,
+	NODE: process.env.REACT_APP_NODE_ADDRESS as string,
+	CONTRACT_ADDRESS: process.env.REACT_APP_CONTRACT_ADDRESS as `0x${string}`,
 };
 
 const LOCAL_STORAGE = {
-  ACCOUNT: 'account',
+	ACCOUNT: "account",
 };
 
 export { ADDRESS, LOCAL_STORAGE };
