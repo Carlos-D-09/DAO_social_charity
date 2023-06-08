@@ -1,3 +1,5 @@
+import { Loader } from "components";
+import { useNFTs } from "hooks/api";
 import { Enlace } from "Enlace";
 import { ReadState } from "components/ReadState";
 import { Link } from "react-router-dom";
@@ -18,6 +20,7 @@ import {
 import { Line } from "react-chartjs-2";
 import styles from "./Home.module.scss";
 import arrow from "../../assets/images/arrow.png";
+import { NFT } from "./nft/nft";
 
 ChartJS.register(
 	CategoryScale,
@@ -114,6 +117,9 @@ export const data2 = {
 		},
 	],
 };
+
+//-----------------------------------------------------------
+// Empiza codigo del componente Home
 function Home() {
 	const [chainData, setChain] = useState<string>();
 	const [nodeNameData, setNodeName] = useState<string>();
@@ -135,6 +141,31 @@ function Home() {
 		setNodeVersion(nodeVersion);
 	};
 
+	/* 	const nfts = useNFTs();
+	const { nfts: state, isNftStateRead: isStateRead } = useNFTs();
+	const isAnyNft = !!nfts?.length;
+
+	const getNFTs = () =>
+		nfts?.map(({ name, id, media }) => (
+			<li key={id}>
+				<NFT id={id} name={name} media={media} />
+			</li>
+		)); */
+
+	const { nfts, isNftStateRead: isStateRead } = useNFTs();
+	const isAnyNft = nfts && nfts.length > 0;
+
+	const getNFTs = () => {
+		if (nfts) {
+			return nfts.map(({ name, id,  }) => (
+				<li key={id}>
+					<NFT id={id} name={name} />
+				</li>
+			));
+		}
+		return null;
+	};
+
 	return (
 		<>
 			<Enlace title="Water Statistics" />
@@ -145,6 +176,14 @@ function Home() {
 				<p>Version del nodo:{nodeVersionData}</p>
 				<Button text="Get Node Information" onClick={nodeInformation} />
 				<ReadState />
+				{isStateRead ? (
+					<>
+						{isAnyNft && <ul className={styles.list}>{getNFTs()}</ul>}
+						{!isAnyNft && <h2>There are no NFTs at the moment</h2>}
+					</>
+				) : (
+					<Loader />
+				)}
 			</div>
 			<div className={styles.fondo}>
 				<div className={styles.container_btn_register}>
