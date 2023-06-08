@@ -2317,6 +2317,7 @@ dependencies = [
  "gmeta",
  "gstd",
  "nft-io",
+ "primitive-types",
 ]
 
 [[package]]
