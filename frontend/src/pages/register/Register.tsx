@@ -52,55 +52,54 @@ function Register() {
 				navigate("/");
 			},
 		});
-
-		return (
-			<>
-				<Enlace title="Register your data water" />
-				<form className={styles.form} action="/" onSubmit={register}>
-					<ul>
-						<li>
-							<p>Pressure</p>
-							<input
-								className={styles.input}
-								id="p"
-								type="text"
-								required
-								value={pressure}
-								onChange={handleInputChange}
-							/>
-							{/* <input type="email" id="mail" name="user_mail"> */}
-						</li>
-						<li>
-							<p>pH</p>
-							<input
-								className={styles.input}
-								id="PH"
-								type="text"
-								required
-								value={ph}
-								onChange={handleInputChange}
-							/>
-						</li>
-						<li>
-							<p>Residence</p>
-							<input
-								className={styles.input}
-								id="domicilio"
-								type="text"
-								required
-								value={residence}
-								onChange={handleInputChange}
-							/>
-						</li>
-					</ul>
-					<div>
-						<button type="submit" className={styles.button}>
-							Submit
-						</button>
-					</div>
-				</form>
-			</>
-		);
 	};
+	return (
+		<>
+			<Enlace title="Register your data water" />
+			<form className={styles.form} action="/" onSubmit={register}>
+				<ul>
+					<li>
+						<p>Pressure</p>
+						<input
+							className={styles.input}
+							id="p"
+							type="text"
+							required
+							value={pressure}
+							onChange={handleInputChange}
+						/>
+						{/* <input type="email" id="mail" name="user_mail"> */}
+					</li>
+					<li>
+						<p>pH</p>
+						<input
+							className={styles.input}
+							id="PH"
+							type="text"
+							required
+							value={ph}
+							onChange={handleInputChange}
+						/>
+					</li>
+					<li>
+						<p>Residence</p>
+						<input
+							className={styles.input}
+							id="domicilio"
+							type="text"
+							required
+							value={residence}
+							onChange={handleInputChange}
+						/>
+					</li>
+				</ul>
+				<div>
+					<button type="submit" className={styles.button}>
+						Submit
+					</button>
+				</div>
+			</form>
+		</>
+	);
 }
 export { Register };
