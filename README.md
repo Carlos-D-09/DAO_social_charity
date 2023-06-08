@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img src="src/assets/images/Logo_water_support_sf_1.png" width="400" alt="Water Support">
+    <img src="frontend/src/assets/images/Logo_water_support_sf_1.png" width="400" alt="Water Support">
   </a>
 </p>
 <p align=center>
