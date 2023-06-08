@@ -1,7 +1,7 @@
 #![no_std]
 
 use gear_lib::non_fungible_token::{
-    io::{NFTApproval, NFTTransfer, NFTTransferPayout},
+    io::{NFTTransfer},
     royalties::*,
     state::NFTState,
     token::*,
@@ -29,18 +29,13 @@ impl Metadata for NFTMetadata {
 pub enum NFTAction {
     Mint {
         transaction_id: u64,
-        token_metadata: TokenMetadata,
+        token_metadata: TokenMetadata
     },
     Burn {
         transaction_id: u64,
         token_id: TokenId,
     },
     Transfer {
-        transaction_id: u64,
-        to: ActorId,
-        token_id: TokenId,
-    },
-    Approve {
         transaction_id: u64,
         to: ActorId,
         token_id: TokenId,
@@ -58,10 +53,8 @@ pub enum NFTAction {
 #[scale_info(crate = gstd::scale_info)]
 pub struct InitNFT {
     pub name: String,
-    pub addres: String,
-    pub water_flow: i32,
-    pub date: String,
-    pub ph: i32,
+    pub symbol: String,
+    pub base_uri: String,
     pub royalties: Option<Royalties>,
 }
 
@@ -70,17 +63,9 @@ pub struct InitNFT {
 #[scale_info(crate = gstd::scale_info)]
 pub enum NFTEvent {
     Transfer(NFTTransfer),
-    TransferPayout(NFTTransferPayout),
-    NFTPayout(Payout),
-    Approval(NFTApproval),
     Owner {
         owner: ActorId,
         token_id: TokenId,
-    },
-    IsApproved {
-        to: ActorId,
-        token_id: TokenId,
-        approved: bool,
     },
 }
 
@@ -106,10 +91,6 @@ pub struct IoNFT {
     pub token_id: TokenId,
     pub owner: ActorId,
     pub transactions: Vec<(H256, NFTEvent)>,
-    pub addres: String,
-    pub water_flow: i32,
-    pub date: String,
-    pub ph: i32,
 }
 
 impl From<&NFTState> for IoNFTState {

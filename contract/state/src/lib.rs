@@ -63,17 +63,9 @@ pub struct InitNFT {
 #[scale_info(crate = gstd::scale_info)]
 pub enum NFTEvent {
     Transfer(NFTTransfer),
-    TransferPayout(NFTTransferPayout),
-    NFTPayout(Payout),
-    Approval(NFTApproval),
     Owner {
         owner: ActorId,
         token_id: TokenId,
-    },
-    IsApproved {
-        to: ActorId,
-        token_id: TokenId,
-        approved: bool,
     },
 }
 
