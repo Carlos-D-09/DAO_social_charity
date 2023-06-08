@@ -1,5 +1,4 @@
 import { useAccount } from "@gear-js/react-hooks";
-import { Button, FileInput, Input } from "@gear-js/ui";
 import { useSendNFTMessage } from "hooks/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +61,7 @@ function Register() {
 						<p>Pressure</p>
 						<input
 							className={styles.input}
-							id="p"
+							id="pressure"
 							type="text"
 							required
 							value={pressure}
