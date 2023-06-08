@@ -1,18 +1,20 @@
-import { useAccount } from "@gear-js/react-hooks";
+/* import { useAccount } from "@gear-js/react-hooks";
 import { useSendNFTMessage } from "hooks/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Enlace } from "Enlace"; */
+import { useState } from "react";
 import { Enlace } from "Enlace";
 import styles from "./Register.module.scss";
 
-const NftInitialState = {
+/* const NftInitialState = {
 	pressure: "",
 	ph: "",
 	residence: "",
-};
+}; */
 
 function Register() {
-	const [nftForm, setNftForm] = useState(NftInitialState);
+	/* 	const [nftForm, setNftForm] = useState(NftInitialState);
 	const { pressure, ph, residence } = nftForm;
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,12 +52,11 @@ function Register() {
 				resetForm();
 				navigate("/");
 			},
-		});
-	};
+		}); */
 	return (
 		<>
 			<Enlace title="Register your data water" />
-			<form className={styles.form} action="/" onSubmit={register}>
+			<form className={styles.form} /* action="/" onSubmit={register} */>
 				<ul>
 					<li>
 						<p>Pressure</p>
@@ -64,8 +65,8 @@ function Register() {
 							id="pressure"
 							type="text"
 							required
-							value={pressure}
-							onChange={handleInputChange}
+							/* value={pressure}
+							onChange={handleInputChange} */
 						/>
 						{/* <input type="email" id="mail" name="user_mail"> */}
 					</li>
@@ -76,8 +77,8 @@ function Register() {
 							id="PH"
 							type="text"
 							required
-							value={ph}
-							onChange={handleInputChange}
+							/* value={ph}
+							onChange={handleInputChange} */
 						/>
 					</li>
 					<li>
@@ -87,8 +88,8 @@ function Register() {
 							id="domicilio"
 							type="text"
 							required
-							value={residence}
-							onChange={handleInputChange}
+							/* value={residence}
+							onChange={handleInputChange} */
 						/>
 					</li>
 				</ul>
