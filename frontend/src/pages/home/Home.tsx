@@ -172,11 +172,11 @@ function Home() {
 		<>
 			<Enlace title="Water Statistics" />
 			<div className="card">
-				<h3>Node Data</h3>
+				{/* <h3>Node Data</h3>
 				<p>Red: {chainData}</p>
 				<p>Nodo: {nodeNameData}</p>
 				<p>Version del nodo:{nodeVersionData}</p>
-				<Button text="Get Node Information" onClick={nodeInformation} />
+				<Button text="Get Node Information" onClick={nodeInformation} /> */}
 				<ReadState />
 				{isStateRead ? (
 					<>

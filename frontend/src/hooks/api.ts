@@ -1,5 +1,4 @@
 import stateMetaWasm from "assets/wasm/nft.meta.wasm";
-// import metaTxt from "assets/meta/nft.meta.txt";
 import { Token } from "types";
 import {
 	useAccount,

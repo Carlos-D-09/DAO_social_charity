@@ -64,10 +64,11 @@ function ReadState() {
 
 	return (
 		<div className="container">
-			<center>Full State</center>
 			<center className="state">
-				State
-				<p className="text"> {JSON.stringify(fullState)}</p>
+				<div className={styles.jsons}>
+					<h2>Json Info</h2>
+					<p className={styles.text_json}> {JSON.stringify(fullState)}</p>
+				</div>
 				<p className={styles.data}>Title: {title}</p>
 				<p className={styles.data}>Name: {name}</p>
 				<p className={styles.data}>Date: {date}</p>
