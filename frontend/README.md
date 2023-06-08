@@ -10,7 +10,7 @@
 
 ## Description
 
-Frontend made for Water Support dApp.
+Frontend made for Water Support dApp using the template, provided by de Gear team.
 
 ### Install packages:
 
