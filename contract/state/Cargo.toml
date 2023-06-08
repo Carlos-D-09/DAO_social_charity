@@ -10,6 +10,7 @@ gstd.workspace = true
 gmeta = { workspace = true, features = ["codegen"] }
 nft-io.workspace = true
 gear-lib.workspace = true
+primitive-types.workspace = true
 
 [build-dependencies]
 gear-wasm-builder = { workspace = true, features = ["metawasm"] }
