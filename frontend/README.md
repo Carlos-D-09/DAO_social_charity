@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img src="src/assets/images/Logo_water_support_sf.svg" width="400" alt="Water Support">
+    <img src="frontend/src/assets/images/Logo_water_support_sf.svg" width="400" alt="Water Support">
   </a>
 </p>
 <p align=center>
@@ -11,6 +11,8 @@
 ## Description
 
 Frontend made for Water Support dApp.
+
+Go to `frontend` directory.
 
 ### Install packages:
 
