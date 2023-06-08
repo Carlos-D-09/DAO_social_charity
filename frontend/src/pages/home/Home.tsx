@@ -1,4 +1,6 @@
 import { Loader } from "components";
+import { GetAllExtrinsics } from "components/GetAllExtrinsics";
+import { SendMessage } from "components/SendMessage";
 import { useNFTs } from "hooks/api";
 import { Enlace } from "Enlace";
 import { ReadState } from "components/ReadState";
@@ -21,8 +23,6 @@ import { Line } from "react-chartjs-2";
 import styles from "./Home.module.scss";
 import arrow from "../../assets/images/arrow.png";
 import { NFT } from "./nft/nft";
-import { GetAllExtrinsics } from "components/GetAllExtrinsics";
-import { SendMessage } from "components/SendMessage";
 
 ChartJS.register(
 	CategoryScale,
@@ -159,7 +159,7 @@ function Home() {
 
 	const getNFTs = () => {
 		if (nfts) {
-			return nfts.map(({ name, id,  }) => (
+			return nfts.map(({ name, id }) => (
 				<li key={id}>
 					<NFT id={id} name={name} />
 				</li>
@@ -186,8 +186,8 @@ function Home() {
 				) : (
 					<Loader />
 				)}
-				<SendMessage/>
-				<GetAllExtrinsics/>
+				<SendMessage />
+				<GetAllExtrinsics />
 			</div>
 			<div className={styles.fondo}>
 				<div className={styles.container_btn_register}>
