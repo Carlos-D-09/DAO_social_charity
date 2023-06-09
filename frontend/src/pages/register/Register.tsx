@@ -6,6 +6,7 @@ import { Enlace } from "Enlace"; */
 import { useState } from "react";
 import { Enlace } from "Enlace";
 import styles from "./Register.module.scss";
+import { SendMessage } from "components/SendMessage";
 
 /* const NftInitialState = {
 	pressure: "",
@@ -99,6 +100,7 @@ function Register() {
 					</button>
 				</div>
 			</form>
+			<SendMessage />
 		</>
 	);
 }
