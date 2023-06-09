@@ -1,20 +1,20 @@
-/* import { useAccount } from "@gear-js/react-hooks";
+import { useAccount } from "@gear-js/react-hooks";
 import { useSendNFTMessage } from "hooks/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Enlace } from "Enlace"; */
-import { useState } from "react";
 import { Enlace } from "Enlace";
-import styles from "./Register.module.scss";
 
-/* const NftInitialState = {
+import styles from "./Register.module.scss";
+import { Button, FileInput, Input } from "@gear-js/ui";
+const NftInitialState = {
 	pressure: "",
 	ph: "",
 	residence: "",
-}; */
+};
 
 function Register() {
-	/* 	const [nftForm, setNftForm] = useState(NftInitialState);
+	const [nftForm, setNftForm] = useState(NftInitialState);
+	const [image, setImage] = useState<File | null>(null);
 	const { pressure, ph, residence } = nftForm;
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,31 +28,11 @@ function Register() {
 
 	const resetForm = () => {
 		setNftForm(NftInitialState);
+		setImage(null);
 	};
 
-	const register = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
 
-		const tokenMetadata = {
-			pressure,
-			ph,
-			residence,
-			reference: "",
-		};
 
-		const payload = {
-			Mint: {
-				to: account?.decodedAddress,
-				tokenMetadata,
-			},
-		};
-
-		sendMessage(payload, {
-			onSuccess: () => {
-				resetForm();
-				navigate("/");
-			},
-		}); */
 	return (
 		<>
 			<Enlace title="Register your data water" />
@@ -88,12 +68,20 @@ function Register() {
 							id="domicilio"
 							type="text"
 							required
-							/* value={residence}
-							onChange={handleInputChange} */
+							value={residence}
+							onChange={handleInputChange}
+						/>
+					</li>
+					<li>
+						<FileInput
+							label="Image"
+							className={styles.input}
+							onChange={(value: File | undefined) => setImage(value || null)}
 						/>
 					</li>
 				</ul>
 				<div>
+					<Button type="submit" text="Create" className={styles.button} />
 					<button type="submit" className={styles.button}>
 						Submit
 					</button>
@@ -101,5 +89,40 @@ function Register() {
 			</form>
 		</>
 	);
+
+	/* 	return (
+		<>
+			<h2 className={styles.heading}> Create NFT</h2>
+			<div className={styles.main}>
+				<form className={styles.from}>
+					...
+					<div className={styles.item}>
+						<FileInput
+							label="image"
+							className={styles.input}
+							onChange={setImage}
+						/>
+						{image ? (
+							<div className="image-preview">
+								<img
+									src={URL.createObjectURL(image)}
+									alt="nft"
+									style={{ width: 100, height: 100 }}
+								/>
+							</div>
+						) : (
+							<p>No image set for this NFT</p>
+						)}
+					</div>
+					<Button type="submit" text="Create" className={styles.button} />
+				</form>
+			</div>
+		</>
+	); */
 }
+
+/* function PreviewNft() {
+
+} */
+
 export { Register };

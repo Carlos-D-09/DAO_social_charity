@@ -26,13 +26,15 @@ function ReadState() {
 
 	const title = fullState?.token?.name;
 
-	const tokenMetadata = fullState?.token?.tokenMetadataById?.[1]?.[1];
-	const description = tokenMetadata?.description;
+	// const tokenMetadata = fullState?.token?.tokenMetadataById?.[1]?.[1];
+	const tokenMetadata = fullState?.token?.description?.[0]?.[0];
+	const description = fullState?.token?.description;
 
-	const name = tokenMetadata?.name;
+	const name = fullState?.token?.name;
 
 	const dateMatch = description?.match(/date:\s*([^,}]+)/);
-	const date = dateMatch ? dateMatch[1].trim() : "";
+	// const date = dateMatch ? dateMatch[1].trim() : "";
+	const date = tokenMetadata;
 
 	const phMatch = description?.match(/PH:\s*([^,}]+)/);
 	const ph = phMatch ? phMatch[1].trim() : "";
