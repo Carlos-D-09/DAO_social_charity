@@ -180,7 +180,7 @@ function Home() {
 	let phContent = [];
 	let waterFlowContent = [];
 
-	for (var i = 0; i < newData.length; i++) {
+	for (let i = 0; i < newData.length; i += 1) {
 		dateContent = newData[i].date;
 		phContent = newData[i].ph;
 		waterFlowContent = newData[i].water_flow;
