@@ -82,7 +82,7 @@ export const options2 = {
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 ChartJS.defaults.borderColor = "#0C2650";
 ChartJS.defaults.color = "#ECECEC";
-export const data1 = {
+/* export const data1 = {
 	labels,
 	datasets: [
 		{
@@ -118,7 +118,7 @@ export const data2 = {
 			backgroundColor: "rgba(53, 162, 235, 0.5)",
 		},
 	],
-};
+}; */
 
 //-----------------------------------------------------------
 // Empiza codigo del componente Home
@@ -177,35 +177,28 @@ function Home() {
 	const newData = JSON.parse(myDataJSON);
 	console.log(newData);
 
-	// let dateContent: string[] = [];
+	const dateContent: string[] = [];
 	const phContent: number[] = [];
 	const waterFlowContent: number[] = [];
 
 	for (let i = 0; i < newData.length; i += 1) {
-		// dateContent.push(newData[i].date)
+		dateContent.push(newData[i].date);
 		phContent.push(newData[i].ph);
 		waterFlowContent.push(newData[i].water_flow);
-		// console.log("the date is: " + newData[i].date);
+		console.log("the date is: " + newData[i].date);
 		console.log("the ph is: " + newData[i].ph);
 		console.log("the water_flow is: " + newData[i].water_flow);
 		console.log("");
 	}
 
-	const labels1 = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-	];
-
 	// console.log("Content1: " + dateContent);
 	console.log("Content2: " + phContent.toString());
-	console.log("Content3: " + waterFlowContent[1].toString());
+	console.log("Content3: " + waterFlowContent.toString());
+
+	const labelsProof = dateContent;
+
 	const dataProof = {
-		labels1,
+		labels: labelsProof,
 		datasets: [
 			{
 				label: "ph",
