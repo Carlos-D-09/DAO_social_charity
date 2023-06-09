@@ -123,7 +123,7 @@ export const data2 = {
 //-----------------------------------------------------------
 // Empiza codigo del componente Home
 function Home() {
-	const [chainData, setChain] = useState<string>();
+	/* 	const [chainData, setChain] = useState<string>();
 	const [nodeNameData, setNodeName] = useState<string>();
 	const [nodeVersionData, setNodeVersion] = useState<string>();
 
@@ -141,7 +141,7 @@ function Home() {
 		setChain(chain);
 		setNodeName(nodeName);
 		setNodeVersion(nodeVersion);
-	};
+	}; */
 
 	/* 	const nfts = useNFTs();
 	const { nfts: state, isNftStateRead: isStateRead } = useNFTs();
@@ -168,47 +168,56 @@ function Home() {
 		return null;
 	};
 
-	const myData = { date: "10-50-69", ph: 6, water_flow: 10 };
-	const myDataJSON = JSON.stringify(myData);
-
+	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
+	const myDataJSON = JSON.stringify(myData); */
+	const myDataJSON =
+		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15},{"date": "10-60-79", "ph": 10, "water_flow": 25},{"date": "10-60-79", "ph": 2, "water_flow": 55},{"date": "10-60-79", "ph": 20, "water_flow": 5}]';
 	console.log(myDataJSON);
 
 	const newData = JSON.parse(myDataJSON);
 	console.log(newData);
 
-	let dateContent = [];
-	let phContent = [];
-	let waterFlowContent = [];
+	// let dateContent: string[] = [];
+	const phContent: number[] = [];
+	const waterFlowContent: number[] = [];
 
 	for (let i = 0; i < newData.length; i += 1) {
-		dateContent = newData[i].date;
-		phContent = newData[i].ph;
-		waterFlowContent = newData[i].water_flow;
-		console.log("the date is: " + newData[i].date);
+		// dateContent.push(newData[i].date)
+		phContent.push(newData[i].ph);
+		waterFlowContent.push(newData[i].water_flow);
+		// console.log("the date is: " + newData[i].date);
 		console.log("the ph is: " + newData[i].ph);
 		console.log("the water_flow is: " + newData[i].water_flow);
 		console.log("");
 	}
 
+	const labels1 = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+	];
+
+	// console.log("Content1: " + dateContent);
+	console.log("Content2: " + phContent.toString());
+	console.log("Content3: " + waterFlowContent[1].toString());
 	const dataProof = {
-		labels,
+		labels1,
 		datasets: [
-			{
-				label: "date",
-				data: dateContent,
-				borderColor: "rgb(255, 99, 132)",
-				backgroundColor: "#0C2650",
-				fill: true,
-			},
 			{
 				label: "ph",
 				data: phContent,
-				borderColor: "rgb(53, 162, 235)",
-				backgroundColor: "rgba(53, 162, 235, 0.5)",
+				borderColor: "rgb(255, 99, 132)",
+				backgroundColor: "#0C2650",
 			},
 			{
 				label: "water_flow",
-				data: waterFlowContent,
+				data: waterFlowContent /* labels.map(() =>
+					faker.datatype.number({ min: -1000, max: 1000 })
+				) */,
 				borderColor: "rgb(53, 162, 235)",
 				backgroundColor: "rgba(53, 162, 235, 0.5)",
 			},

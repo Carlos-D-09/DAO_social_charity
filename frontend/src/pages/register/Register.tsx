@@ -3,9 +3,9 @@ import { useSendNFTMessage } from "hooks/api";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Enlace } from "Enlace";
-
-import styles from "./Register.module.scss";
 import { Button, FileInput, Input } from "@gear-js/ui";
+import styles from "./Register.module.scss";
+
 const NftInitialState = {
 	pressure: "",
 	ph: "",
