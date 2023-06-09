@@ -172,10 +172,10 @@ function Home() {
 	const myDataJSON = JSON.stringify(myData); */
 	const myDataJSON =
 		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15},{"date": "10-60-79", "ph": 10, "water_flow": 25},{"date": "10-60-79", "ph": 2, "water_flow": 55},{"date": "10-60-79", "ph": 20, "water_flow": 5}]';
-	console.log(myDataJSON);
+	// console.log(myDataJSON);
 
 	const newData = JSON.parse(myDataJSON);
-	console.log(newData);
+	// console.log(newData);
 
 	const dateContent: string[] = [];
 	const phContent: number[] = [];
@@ -185,15 +185,15 @@ function Home() {
 		dateContent.push(newData[i].date);
 		phContent.push(newData[i].ph);
 		waterFlowContent.push(newData[i].water_flow);
-		console.log("the date is: " + newData[i].date);
+		/* console.log("the date is: " + newData[i].date);
 		console.log("the ph is: " + newData[i].ph);
 		console.log("the water_flow is: " + newData[i].water_flow);
-		console.log("");
+		console.log(""); */
 	}
 
 	// console.log("Content1: " + dateContent);
-	console.log("Content2: " + phContent.toString());
-	console.log("Content3: " + waterFlowContent.toString());
+	/* console.log("Content2: " + phContent.toString());
+	console.log("Content3: " + waterFlowContent.toString()); */
 
 	const labelsProof = dateContent;
 
@@ -217,9 +217,9 @@ function Home() {
 		],
 	};
 
-	console.log(newData.date);
+	/* 	console.log(newData.date);
 	console.log(newData.ph);
-	console.log(newData.water_flow);
+	console.log(newData.water_flow); */
 
 	return (
 		<>
@@ -231,6 +231,7 @@ function Home() {
 				<p>Version del nodo:{nodeVersionData}</p>
 				<Button text="Get Node Information" onClick={nodeInformation} /> */}
 				<ReadState />
+				<SendMessage />
 				{isStateRead ? (
 					<>
 						{isAnyNft && <ul className={styles.list}>{getNFTs()}</ul>}

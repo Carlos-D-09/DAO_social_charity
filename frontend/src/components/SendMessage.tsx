@@ -10,8 +10,9 @@ import { useState } from "react";
 
 function SendMessage() {
 	const [status, setStatus] = useState<any | undefined>("");
-	const [gasValue, setGasValue] = useState<GasInfo | null>(null);
+	// const [gasValue, setGasValue] = useState<GasInfo | null>(null);
 	const [minLimitValue, setMinLimitValue] = useState<number | null>(null);
+	// const [messageSent, setMessageSent] = useState<string | undefined>("");
 	const alert = useAlert();
 
 	const sendmessage = async () => {
@@ -34,26 +35,35 @@ function SendMessage() {
 			0,
 			true
 		);
-
 		// const { min_limit} = gas;
-		setMinLimitValue(gas.min_limit.toNumber());
+		const minLimit = gas.min_limit !== null ? gas.min_limit.toNumber() : 0;
+		setMinLimitValue(minLimit);
 
 		try {
 			const message: any = {
 				destination: programId, // programId
 				payload: somePayload,
-				gasLimit:
-					minLimitValue /* 40000000 */ /* gasValue !== null ? gasValue : 40000000 */,
+				gasLimit: 40000000 /* gasValue !== null ? gasValue : 40000000 */,
 				value: 1000,
 			};
+			const api = await GearApi.create();
+			/* api.program.submit({ code, gasLimit });
+// same for api.message, api.reply and others
+const paymentInfo = await api.program.paymentInfo(alice);
+const transactionFee = paymentInfo.partialFee.toNumber();
+console.log(transactionFee); */
 
 			const extrinsic: any = gearApi.message.send(message, meta);
 			await extrinsic.signAndSend(keyring, (event: any) => {
 				console.log(event.toHuman());
+				alert.success("Sending Message");
 			});
-			alert.success("Sending Message");
+			const messageShow = "Mensaje enviado correctamente";
+			setStatus(messageShow);
 		} catch (error: any) {
 			console.error(`${error.name}: ${error.message}`);
+			const errorMessage = `${error.name}: ${error.message}`;
+			setStatus(errorMessage);
 		}
 	};
 
