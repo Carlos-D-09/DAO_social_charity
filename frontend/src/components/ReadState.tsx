@@ -24,7 +24,7 @@ function ReadState() {
 
 	const [fullState, setFullState] = useState<State>({} as State);
 
-	const title = fullState?.token?.name;
+	/* 	const title = fullState?.token?.name;
 
 	const tokenMetadata = fullState?.token?.tokenMetadataById?.[1]?.[1];
 	const description = tokenMetadata?.description;
@@ -39,7 +39,7 @@ function ReadState() {
 
 	const waterflowMatch = description?.match(/waterflow:\s*([^,}]+)/);
 
-	const waterflow = waterflowMatch ? waterflowMatch[1].trim() : "";
+	const waterflow = waterflowMatch ? waterflowMatch[1].trim() : ""; */
 
 	const codeId =
 		"0x748cc60326b79f16833026752108964cc8dd13fc778b4716d8f1754f2896b92e";
@@ -69,11 +69,11 @@ function ReadState() {
 					<h2>Json Info</h2>
 					<p className={styles.text_json}> {JSON.stringify(fullState)}</p>
 				</div>
-				<p className={styles.data}>Title: {title}</p>
+				{/* 				<p className={styles.data}>Title: {title}</p>
 				<p className={styles.data}>Name: {name}</p>
 				<p className={styles.data}>Date: {date}</p>
 				<p className={styles.data}>Ph: {ph}</p>
-				<p className={styles.data}>Waterflow: {waterflow}</p>
+				<p className={styles.data}>Waterflow: {waterflow}</p> */}
 			</center>
 
 			<Button text="Get Full State" onClick={getState} />
