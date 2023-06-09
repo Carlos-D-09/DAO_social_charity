@@ -3,12 +3,22 @@ import { useState } from "react";
 import { useAlert } from '@gear-js/react-hooks';
 import { useForm } from 'react-hook-form';
 import { useIPFS, useSendNFTMessage } from 'hooks';
+import fs from 'fs'
 import { getMintPayload } from 'utils';
 import styles from "./Register.module.scss";
 
 type Values = { waterFlow: number, ph: number, residence: String };
 const defaultValues = { water_flow: 0, ph: 0, residence: '' };
 
+function getCurrentDate(): string {
+	const currentDate = new Date();
+	
+	const day = String(currentDate.getDate()).padStart(2, '0');
+	const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+	const year = String(currentDate.getFullYear());
+	
+	return `${day}-${month}-${year}`;
+}
 
 function Register() {
 	const { formState, register, handleSubmit, reset } = useForm<Values>({ defaultValues });
@@ -21,18 +31,19 @@ function Register() {
 	const onSubmit = async (data: Values) => {
 		const { waterFlow, ph, residence } = data;
 
-		console.log(waterFlow);
-		console.log(ph);
-		console.log(residence);
-
-		const jsonData = JSON.parse('{ wf: waterFlow, ph_data: ph, res: residence }');
-
-		console.log(jsonData);
+		const jsonObject = {
+			wh: waterFlow,
+			ph_data: ph,
+			res: residence,
+			date: getCurrentDate()
+		};
+		
+		const JSONstring = JSON.stringify(jsonObject);
 
 		const details = '';
 
 		ipfs
-		.add(jsonData)
+		.add(JSONstring)
 		.then(({ cid }) => cid)
 		.then(async (jsonCid) => (details ? { detailsCid: (await ipfs.add(details)).cid, jsonCid } : { jsonCid }))
 		.then(({ jsonCid, detailsCid }) => getMintPayload('Test 1', 'This is a test', jsonCid, detailsCid))
