@@ -154,6 +154,8 @@ function Home() {
 			</li>
 		)); */
 
+		
+
 	const { nfts, isNftStateRead: isStateRead } = useNFTs();
 	const isAnyNft = nfts && nfts.length > 0;
 
@@ -168,9 +170,60 @@ function Home() {
 		return null;
 	};
 
+	const myData = { date: "10-50-69", ph: 6, water_flow: 10  };
+	const myDataJSON = JSON.stringify(myData);
+
+	console.log(myDataJSON);
+
+	const newData = JSON.parse(myDataJSON);
+	console.log(newData);
+
+	let dateContent = [];
+	let phContent = [];
+	let waterFlowContent = [];
+
+	for (var i = 0; i < newData.length; i++) {
+		dateContent = newData[i].date;
+		phContent = newData[i].ph;
+		waterFlowContent = newData[i].water_flow;
+		console.log("the date is: "+newData[i].date);
+		console.log("the ph is: "+newData[i].ph);
+		console.log("the water_flow is: "+newData[i].water_flow);
+		console.log("");
+}
+
+const dataProof = {
+	labels,
+	datasets: [
+		{
+			label: "date",
+			data: {dateContent},
+			borderColor: "rgb(255, 99, 132)",
+			backgroundColor: "#0C2650",
+			fill: true,
+		},
+		{
+			label: "ph",
+			data: phContent,
+			borderColor: "rgb(53, 162, 235)",
+			backgroundColor: "rgba(53, 162, 235, 0.5)",
+		},
+		{
+			label: "water_flow",
+			data: waterFlowContent,
+			borderColor: "rgb(53, 162, 235)",
+			backgroundColor: "rgba(53, 162, 235, 0.5)",
+		},
+	],
+};
+
+	console.log(newData.date);
+	console.log(newData.ph);
+	console.log(newData.water_flow);
+
 	return (
 		<>
-			<Enlace title="Water Statistics" />
+			<Enlace title="Water NFT" />
 			<div className="card">
 				{/* <h3>Node Data</h3>
 				<p>Red: {chainData}</p>
@@ -189,6 +242,7 @@ function Home() {
 				{/* 				<SendMessage />
 				<GetAllExtrinsics /> */}
 			</div>
+			<Enlace title="Water Statistics" />
 			<div className={styles.fondo}>
 				<div className={styles.container_btn_register}>
 					<img className={styles.arrow} src={arrow} alt="" />
@@ -201,9 +255,9 @@ function Home() {
 				<Line
 					style={{ marginBottom: "200px" }}
 					options={options1}
-					data={data1}
+					data={dataProof}
 				/>
-				<Line options={options2} data={data2} />
+				<Line options={options2} data={dataProof} />
 			</div>
 		</>
 	);

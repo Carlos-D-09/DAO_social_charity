@@ -2,7 +2,9 @@ import { HexString } from "@polkadot/util/types";
 
 type Token = {
     approvedAccountIds: HexString[];
-    description: string;
+    pressure: string;
+    ph: string;
+    residence: string;
     id: string;
     media: string;
     name: string;
