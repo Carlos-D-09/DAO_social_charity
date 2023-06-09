@@ -170,7 +170,7 @@ function Home() {
 		return null;
 	};
 
-	const myData = { date: "10-50-69", ph: 6, water_flow: 10  };
+	const myData = {date: "10-50-69", ph: 6, water_flow: 10  };
 	const myDataJSON = JSON.stringify(myData);
 
 	console.log(myDataJSON);
@@ -192,16 +192,12 @@ function Home() {
 		console.log("");
 }
 
+console.log("Content1: "+dateContent);
+		console.log("Content2: "+phContent);
+		console.log("Content3: "+waterFlowContent);
 const dataProof = {
 	labels,
 	datasets: [
-		{
-			label: "date",
-			data: {dateContent},
-			borderColor: "rgb(255, 99, 132)",
-			backgroundColor: "#0C2650",
-			fill: true,
-		},
 		{
 			label: "ph",
 			data: phContent,
