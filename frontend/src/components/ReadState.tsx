@@ -1,6 +1,6 @@
 import { getProgramMetadata } from "@gear-js/api";
 import { useEffect, useState } from "react";
-import { useApi, useAlert } from "@gear-js/react-hooks";
+import { useApi, useAlert, useAccount } from "@gear-js/react-hooks";
 import { AnyJson } from "@polkadot/types/types";
 
 //Recuperar el estado del programa 
@@ -26,7 +26,7 @@ function GetState() {
 				const metadata = getProgramMetadata("0x" + meta);
 				const result = await api.programState.read({ programId: programId }, metadata);
 				setFullState(result.toJSON());
-				alert.success("Successful state");
+				// alert.success("Successful state");
 			} catch (error) {
 				  alert.success("Error state");
 		  	}
@@ -37,22 +37,55 @@ function GetState() {
 	return fullState;
 }
 
+function findKeyByValue<T>(obj: Record<string, T[]>, value: T): string | undefined {
+	const keys = Object.keys(obj);
+	
+	for (const key of keys) {
+	  if (obj[key].includes(value)) {
+		return key;
+	  }
+	}
+	
+	return undefined;
+}
+
 //Convertir en JSON el estado del programa.
 function ReadState(){
 	const state = GetState();
-	const staticCopyState = Object.assign({},state)
-	const stateString = JSON.stringify(state);
-	const stateJSON = JSON.parse(JSON.stringify(staticCopyState));
-	return (
-		<div className="container">
-			<center>Full State</center>
-		  	<center className="state">
-				<p className="text"> {stateString}</p>
-				<br />
-				<p className="text"> {JSON.stringify(stateJSON['token'])}</p>
-		  	</center>
-		</div>
-	  );
+	const CopyState = Object.assign({},state)
+	const stateJSON = JSON.parse(JSON.stringify(CopyState));
+	const token = Object.assign({},stateJSON.token);
+	const tokenMetadata = Object.assign({},token.tokenMetadataById);
+	const ownerId = Object.assign({},token.ownerById);
+	const { account } = useAccount();
+	const userId = 10;
+	// const userId = account?.decodedAddress;
+	const ownerKey = findKeyByValue(ownerId, userId);; //If this variable equals to null, it means that the user doesn't have any register 
+
+	if (ownerKey == null){
+		return (
+			<div className="container">
+				<center>Full State</center>
+				  <center className="state">
+					<p>This user doesn't have NFT asociated to his account</p>
+				  </center>
+			</div>
+		  );
+	}
+	else{
+		return (
+			<div className="container">
+				<center>Full State</center>
+				  <center className="state">
+					<p className="text"> {JSON.stringify(tokenMetadata)}</p>
+					<br />
+					<p className="text"> {JSON.stringify(ownerId)}</p>
+					<br />
+					<p className="text"> {ownerKey}</p>
+				  </center>
+			</div>
+		  );
+	}
 }
 
 export { ReadState };
