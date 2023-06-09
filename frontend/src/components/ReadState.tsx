@@ -18,6 +18,7 @@ interface State {
 }
 
 function ReadState() {
+	/*
 	const { api } = useApi();
 
 	const alert = useAlert();
@@ -78,7 +79,11 @@ function ReadState() {
 
 			<Button text="Get Full State" onClick={getState} />
 		</div>
-	);
+	); */
+
+	return (
+		<div>A</div>
+	)
 }
 
 export { ReadState };
