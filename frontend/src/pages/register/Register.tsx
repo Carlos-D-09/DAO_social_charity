@@ -1,107 +1,81 @@
-/* import { useAccount } from "@gear-js/react-hooks";
-import { useSendNFTMessage } from "hooks/api";
+import { Button, Input } from '@gear-js/ui';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Enlace } from "Enlace"; */
-import { useState } from "react";
-import { Enlace } from "Enlace";
+import { useAlert } from '@gear-js/react-hooks';
+import { useForm } from 'react-hook-form';
+import { useIPFS, useSendNFTMessage } from 'hooks';
+import fs from 'fs'
+import { getMintPayload } from 'utils';
 import styles from "./Register.module.scss";
-import { SendMessage } from "components/SendMessage";
 
-/* const NftInitialState = {
-	pressure: "",
-	ph: "",
-	residence: "",
-}; */
+type Values = { waterFlow: number, ph: number, residence: String };
+const defaultValues = { water_flow: 0, ph: 0, residence: '' };
+
+function getCurrentDate(): string {
+	const currentDate = new Date();
+	
+	const day = String(currentDate.getDate()).padStart(2, '0');
+	const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+	const year = String(currentDate.getFullYear());
+	
+	return `${day}-${month}-${year}`;
+}
 
 function Register() {
-	/* 	const [nftForm, setNftForm] = useState(NftInitialState);
-	const { pressure, ph, residence } = nftForm;
+	const { formState, register, handleSubmit, reset } = useForm<Values>({ defaultValues });
+	const { errors } = formState;
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setNftForm(prevForm => ({ ...prevForm, [name]: value }));
-	};
-
-	const { account } = useAccount();
-	const navigate = useNavigate();
+	const alert = useAlert();
+	const ipfs = useIPFS();
 	const sendMessage = useSendNFTMessage();
 
-	const resetForm = () => {
-		setNftForm(NftInitialState);
+	const onSubmit = async (data: Values) => {
+		const { waterFlow, ph, residence } = data;
+
+		const jsonObject = {
+			wh: waterFlow,
+			ph_data: ph,
+			res: residence,
+			date: getCurrentDate()
+		};
+		
+		const JSONstring = JSON.stringify(jsonObject);
+
+		const details = '';
+
+		ipfs
+		.add(JSONstring)
+		.then(({ cid }) => cid)
+		.then(async (jsonCid) => (details ? { detailsCid: (await ipfs.add(details)).cid, jsonCid } : { jsonCid }))
+		.then(({ jsonCid, detailsCid }) => getMintPayload('Test 1', 'This is a test', jsonCid, detailsCid))
+		.then((payload) => sendMessage(payload, { onSuccess: reset }))
+		.catch(({ message }: Error) => alert.error(message));
+
 	};
 
-	const register = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		const tokenMetadata = {
-			pressure,
-			ph,
-			residence,
-			reference: "",
-		};
-
-		const payload = {
-			Mint: {
-				to: account?.decodedAddress,
-				tokenMetadata,
-			},
-		};
-
-		sendMessage(payload, {
-			onSuccess: () => {
-				resetForm();
-				navigate("/");
-			},
-		}); */
 	return (
 		<>
-			<Enlace title="Register your data water" />
-			<form className={styles.form} /* action="/" onSubmit={register} */>
-				<ul>
-					<li>
-						<p>Pressure</p>
-						<input
-							className={styles.input}
-							id="pressure"
-							type="text"
-							required
-							/* value={pressure}
-							onChange={handleInputChange} */
-						/>
-						{/* <input type="email" id="mail" name="user_mail"> */}
-					</li>
-					<li>
-						<p>pH</p>
-						<input
-							className={styles.input}
-							id="PH"
-							type="text"
-							required
-							/* value={ph}
-							onChange={handleInputChange} */
-						/>
-					</li>
-					<li>
-						<p>Residence</p>
-						<input
-							className={styles.input}
-							id="domicilio"
-							type="text"
-							required
-							/* value={residence}
-							onChange={handleInputChange} */
-						/>
-					</li>
-				</ul>
-				<div>
-					<button type="submit" className={styles.button}>
-						Submit
-					</button>
-				</div>
-			</form>
-			<SendMessage />
-		</>
+      <h2 className={styles.heading}>Record</h2>
+      <div className={styles.main}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.item}>
+            <Input label="Water Flow" className={styles.input} {...register('waterFlow', { required: 'Water flow is required' })} />
+            <p className={styles.error}>{errors.waterFlow?.message}</p>
+          </div>
+
+          <div className={styles.item}>
+            <Input label="Ph" className={styles.input} {...register('ph', { required: 'Ph is required' })} />
+            <p className={styles.error}>{errors.ph?.message}</p>
+          </div>
+
+		  <div className={styles.item}>
+		  	<Input label="Residence" className={styles.input} {...register('residence', { required: 'Residence is required' })} />
+            <p className={styles.error}>{errors.residence?.message}</p>
+          </div>
+
+          <Button type="submit" text="Submit" className={styles.button} block />
+        </form>
+      </div>
+    </>
 	);
 }
 export { Register };
