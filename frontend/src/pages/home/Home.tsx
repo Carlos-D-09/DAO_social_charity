@@ -150,10 +150,10 @@ function Home() {
 	const myDataJSON = JSON.stringify(myData); */
 	const myDataJSON =
 		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15}]';
-	console.log(myDataJSON);
+	// console.log(myDataJSON);
 
 	const newData = JSON.parse(myDataJSON);
-	console.log(newData);
+	// console.log(newData);
 
 	// let dateContent: string[] = [];
 	const phContent: number[] = [];
@@ -164,14 +164,14 @@ function Home() {
 		phContent.push(newData[i].ph);
 		waterFlowContent.push(newData[i].water_flow);
 		// console.log("the date is: " + newData[i].date);
-		console.log("the ph is: " + newData[i].ph);
-		console.log("the water_flow is: " + newData[i].water_flow);
-		console.log("");
+		/* console.log("the ph is: ", newData[i].ph);
+		console.log("the water_flow is: ", newData[i].water_flow);
+		console.log(""); */
 	}
 
 	// console.log("Content1: " + dateContent);
-	console.log("Content2: " + phContent.toString());
-	console.log("Content3: " + waterFlowContent[1].toString());
+	/* console.log("Content2: ", phContent.toString());
+	console.log("Content3: ", waterFlowContent[1].toString()); */
 	const dataProof = {
 		labels,
 		datasets: [

@@ -6,7 +6,7 @@ import { Create } from "./create";
 const routes = [
 	{ path: "/", Page: Home },
 	{ path: "/register", Page: Register },
-	{ path: "create", Page: Create },
+	{ path: "/create", Page: Create },
 ];
 
 function Routing() {

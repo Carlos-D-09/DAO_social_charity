@@ -2,7 +2,7 @@ import { Button, Input } from "@gear-js/ui";
 import { useState } from "react";
 import { useAlert } from "@gear-js/react-hooks";
 import { useForm } from "react-hook-form";
-import { useIPFS, useSendNFTMessage } from "hooks";
+import { useIPFS, useSendNFTMessage, useWasmMetadata } from "hooks";
 import fs from "fs";
 import { getMintPayload } from "utils";
 import styles from "./Register.module.scss";
@@ -28,7 +28,13 @@ function Register() {
 
 	const alert = useAlert();
 	const ipfs = useIPFS();
+	// console.log(ipfs);
 	const sendMessage = useSendNFTMessage();
+	// console.log(sendMessage);
+
+	const metadata = useWasmMetadata("assets/wasm/nft.meta.wasm");
+
+	console.log(metadata);
 
 	const onSubmit = async (data: Values) => {
 		const { waterFlow, ph, residence } = data;
@@ -43,12 +49,11 @@ function Register() {
 		const JSONstring = JSON.stringify(jsonObject);
 
 		const details = "";
-
 		ipfs
 			.add(JSONstring)
 			.then(({ cid }: { cid: any }) => cid)
 			.then(async (jsonCid: any) =>
-				details
+				/* details */ JSONstring
 					? { detailsCid: (await ipfs.add(details)).cid, jsonCid }
 					: { jsonCid }
 			)
