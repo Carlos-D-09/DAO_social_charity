@@ -30,12 +30,13 @@ function Account() {
 			) : (
 				<Button
 					className={styles.style_button}
-					icon={userSVG}
 					text="Sign in"
 					onClick={openModal}
 				/>
 			)}
-			{isModalOpen && <AccountsModal accounts={accounts} close={closeModal} />}
+			{isModalOpen && (
+				<AccountsModal /* accounts={accounts} */ close={closeModal} />
+			)}
 		</>
 	);
 }

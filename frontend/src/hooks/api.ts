@@ -15,11 +15,6 @@ function useNFTMetadata() {
 	return useMetadata(metaTxt);
 }
 
-function useSendNFTMessage() {
-	const meta = useNFTMetadata();
-	return useSendMessage(ADDRESS.CONTRACT_ADDRESS, meta);
-}
-
 function useNFTState<T>(functionName: string, payload?: any) {
 	const { buffer } = useWasmMetadata(stateMetaWasm);
 
@@ -64,6 +59,11 @@ function useApprovedNFTs() {
 	);
 
 	return { approvedNFTs: state, isApprovedNFTsRead: isStateRead };
+}
+
+function useSendNFTMessage() {
+	const meta = useNFTMetadata();
+	return useSendMessage(ADDRESS.CONTRACT_ADDRESS, meta);
 }
 
 export { useNFT, useNFTs, useOwnerNFTs, useApprovedNFTs, useSendNFTMessage };

@@ -1,6 +1,6 @@
 import { Button, Input } from "@gear-js/ui";
 import { useState } from "react";
-import { useAlert } from "@gear-js/react-hooks";
+// import { useAlert } from "@gear-js/react-hooks";
 import { useForm } from "react-hook-form";
 import { useIPFS, useSendNFTMessage, useWasmMetadata } from "hooks";
 import fs from "fs";
@@ -26,7 +26,7 @@ function Register() {
 	});
 	const { errors } = formState;
 
-	const alert = useAlert();
+	// const alert = useAlert();
 	const ipfs = useIPFS();
 	// console.log(ipfs);
 	const sendMessage = useSendNFTMessage();
@@ -60,8 +60,8 @@ function Register() {
 			.then(({ jsonCid, detailsCid }: { jsonCid: any; detailsCid?: any }) =>
 				getMintPayload("Test 1", "This is a test", jsonCid, detailsCid)
 			)
-			.then((payload: any) => sendMessage(payload, { onSuccess: reset }))
-			.catch(({ message }: Error) => alert.error(message));
+			.then((payload: any) => sendMessage(payload, { onSuccess: reset }));
+		// .catch(({ message }: Error) => alert.error(message));
 	};
 
 	return (

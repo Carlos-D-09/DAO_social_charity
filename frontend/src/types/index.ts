@@ -14,10 +14,15 @@ type Token = {
 	reference: string;
 };
 
+//Podemos quitarlo
+type Attributes = {
+	[key: string]: string;
+};
+
 type TokenDetails = {
 	waterFlow: number;
 	ph: number;
 	residence: string;
 };
 
-export type { Params, Token, TokenDetails };
+export type { Params, Token, Attributes, TokenDetails };

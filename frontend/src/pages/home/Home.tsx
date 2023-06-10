@@ -1,11 +1,14 @@
-import { Loader } from "components";
-import { useNFTs } from "hooks/api";
+import { useState } from "react";
+import { InfoText, Loader } from "components";
+// import { /* InfoText */ useNFTs } from "hooks/api";
+import { FILTERS } from "consts";
 import { Enlace } from "Enlace";
 import { ReadState } from "components/ReadState";
 import { Link } from "react-router-dom";
 import { GearApi } from "@gear-js/api";
-import { useState } from "react";
 import { Button } from "@gear-js/ui";
+import { useNFTs, useWasmMetadata, useOwnerNFTs, useApprovedNFTs } from "hooks";
+import { useAccount } from "@gear-js/react-hooks";
 import faker from "faker";
 import {
 	Chart as ChartJS,
@@ -18,9 +21,10 @@ import {
 	Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import styles from "./Home.module.scss";
+import { NFT } from "./nft/NFT";
+import { Filter } from "./filter";
 import arrow from "../../assets/images/arrow.png";
-import { NFT } from "./nft/nft";
+import styles from "./Home.module.scss";
 
 ChartJS.register(
 	CategoryScale,
@@ -121,25 +125,43 @@ export const data2 = {
 //-----------------------------------------------------------
 // Empiza codigo del componente Home
 function Home() {
-	/* 	const nfts = useNFTs();
-	const { nfts: state, isNftStateRead: isStateRead } = useNFTs();
-	const isAnyNft = !!nfts?.length;
+	const [filter, setFilter] = useState("All");
+	const { account } = useAccount();
 
-	const getNFTs = () =>
-		nfts?.map(({ name, id, media }) => (
-			<li key={id}>
-				<NFT id={id} name={name} media={media} />
-			</li>
-		)); */
+	const nfts = useNFTs();
+	const { ownerNFTs, isOwnerNFTsRead } = useOwnerNFTs();
+	const { approvedNFTs, isApprovedNFTsRead } = useApprovedNFTs();
 
-	const { nfts, isNftStateRead: isStateRead } = useNFTs();
-	const isAnyNft = nfts && nfts.length > 0;
+	const getList = () => {
+		switch (filter) {
+			case "My":
+				return ownerNFTs;
+			case "Approved":
+				return approvedNFTs;
+			default:
+				return nfts;
+		}
+	};
 
+	// const { nfts, isNftStateRead: isStateRead } = useNFTs();
+	// const isAnyNft = nfts && nfts.length > 0;
+	/* 
 	const getNFTs = () => {
 		if (nfts) {
-			return nfts.map(({ name, id }) => (
+			return nfts.map(({ name, id, reference }) => (
 				<li key={id}>
-					<NFT id={id} name={name} />
+					<NFT id={id} name={name} reference={reference} />
+				</li>
+			));
+		}
+		return null;
+	}; */
+	const getNFTs = () => {
+		const list = getList();
+		if (Array.isArray(list)) {
+			return list?.map(({ id, name, media, reference }) => (
+				<li key={id}>
+					<NFT id={id} name={name} media={media} reference={reference} />
 				</li>
 			));
 		}
@@ -154,7 +176,9 @@ function Home() {
 
 	const newData = JSON.parse(myDataJSON);
 	// console.log(newData);
+	/* 	const metadata = useWasmMetadata("assets/wasm/nft.meta.wasm");
 
+	console.log(metadata); */
 	// let dateContent: string[] = [];
 	const phContent: number[] = [];
 	const waterFlowContent: number[] = [];
@@ -195,22 +219,32 @@ function Home() {
 	/* console.log(newData.date);
 	console.log(newData.ph);
 	console.log(newData.water_flow); */
+	const NFTs = getNFTs();
+	const isEachNftLoaded =
+		nfts && (account ? isOwnerNFTsRead && isApprovedNFTsRead : true);
+	const isAnyNft = !!NFTs?.length;
 
 	return (
 		<>
 			<Enlace title="Water NFT" />
 			<div className="card">
 				<ReadState />
-				{isStateRead ? (
-					<>
-						{isAnyNft && <ul className={styles.list}>{getNFTs()}</ul>}
-						{!isAnyNft && <h2>There are no NFTs at the moment</h2>}
-					</>
-				) : (
-					<Loader />
+				<h2>NFTs</h2>
+				{account && (
+					<Filter list={FILTERS} value={filter} onChange={setFilter} />
 				)}
-				{/* 				<SendMessage />
-				<GetAllExtrinsics /> */}
+				{
+					/* isStateRead */ isEachNftLoaded ? (
+						<>
+							{isAnyNft && <ul className={styles.list}>{NFTs}</ul>}
+							{!isAnyNft && (
+								/* <h2>There are no NFTs at the moment</h2> */ <InfoText text="There are no NFTs at the moment." />
+							)}
+						</>
+					) : (
+						<Loader />
+					)
+				}
 			</div>
 			<Enlace title="Water Statistics" />
 			<div className={styles.fondo}>

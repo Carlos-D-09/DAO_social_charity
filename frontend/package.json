@@ -5,7 +5,7 @@
 	"dependencies": {
 		"@gear-js/api": "0.30.6",
 		"@gear-js/react-hooks": "0.5.16",
-		"@gear-js/ui": "0.5.19",
+		"@gear-js/ui": "0.4.0",
 		"@mantine/form": "6.0.8",
 		"@polkadot/api": "10.3.4",
 		"@polkadot/extension-dapp": "0.45.5",
@@ -73,8 +73,7 @@
 		"eslint-plugin-jsx-a11y": "6.7.1",
 		"eslint-plugin-react": "7.32.2",
 		"eslint-plugin-react-hooks": "4.6.0",
-		"react-app-rewired": "^2.2.1",
-		"webpack": "^5.86.0"
+		"react-app-rewired": "^2.2.1"
 	},
 	"lint-staged": {
 		"./**/*.{js,css,ts,tsx}": "eslint --fix"

@@ -9,7 +9,7 @@ type Props = {
 
 const IPFSContext = createContext({} as IPFSHTTPClient);
 
-function IPFSProvider({ children }: ProviderProps) {
+function IPFSProvider({ children }: /* ProviderProps */ Props) {
 	const ipfsRef = useRef(create({ url: ADDRESS.IPFS }));
 
 	const { Provider } = IPFSContext;

@@ -1459,10 +1459,10 @@
   resolved "https://registry.npmjs.org/@gear-js/react-hooks/-/react-hooks-0.5.16.tgz"
   integrity sha512-toG0UFvUuN3quCLdmR6kpVLEjJ1UJ5tFFIG2Nhaw58LqFxdiVtMtlsWS9BD4+96hGaN7bg9JRwKTyeq/9dBDJQ==
 
-"@gear-js/ui@0.5.19":
-  version "0.5.19"
-  resolved "https://registry.npmjs.org/@gear-js/ui/-/ui-0.5.19.tgz"
-  integrity sha512-+ftv5n0jHgLopZRHWsP7f6wkT9/4xwYohfKo6s3t2Ngc1v+aS7LkOoBJ3yHbG+3XsrGj0GU3Pf6iaAMDJWfz9w==
+"@gear-js/ui@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.npmjs.org/@gear-js/ui/-/ui-0.4.0.tgz"
+  integrity sha512-HCXXXd82GJi89buUaA44BbmlfdJtfRzXVJpjPmhbX+nGh7V8FHCXWcQ1AKSQUDVuZ4mTxzzaYoSmeU27i5DqVg==
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -12207,7 +12207,7 @@ sass-loader@^12.3.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.3.0, sass@1.62.0:
+sass@^1.3.0, sass@^1.49.9, sass@1.62.0:
   version "1.62.0"
   resolved "https://registry.npmjs.org/sass/-/sass-1.62.0.tgz"
   integrity sha512-Q4USplo4pLYgCi+XlipZCWUQz5pkg/ruSSgJ0WRDSb/+3z9tXUOkQ7QPYn4XrhZKYAK4HlpaQecRwKLJX6+DBg==
@@ -13597,7 +13597,7 @@ webpack-sources@^3.2.3:
   resolved "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.9.0", "webpack@^4.44.2 || ^5.47.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.64.4, webpack@^5.86.0, "webpack@>= 4", webpack@>=2, "webpack@>=4.43.0 <6.0.0":
+"webpack@^4.0.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.9.0", "webpack@^4.44.2 || ^5.47.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.64.4, "webpack@>= 4", webpack@>=2, "webpack@>=4.43.0 <6.0.0":
   version "5.86.0"
   resolved "https://registry.npmjs.org/webpack/-/webpack-5.86.0.tgz"
   integrity sha512-3BOvworZ8SO/D4GVP+GoRC3fVeg5MO4vzmq8TJJEkdmopxyazGDxN8ClqN12uzrZW9Tv8EED8v5VSb6Sqyi0pg==

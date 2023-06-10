@@ -28,11 +28,11 @@ function Create() {
 	});
 	const { errors } = formState;
 
-	/* 	const alert = useAlert();
+	const alert = useAlert();
 	const ipfs = useIPFS();
-	console.log(ipfs);
+	// console.log(ipfs);
 	const sendMessage = useSendNFTMessage();
-	console.log(sendMessage); */
+	// console.log(sendMessage);
 
 	const resetForm = () => {
 		reset();
@@ -49,20 +49,24 @@ function Create() {
 
 		const jsonString = JSON.stringify(jsonObj);
 
-		/* 		ipfs
+		ipfs
 			.add(genericReport)
-			.then(({ cid }: { cid: any }) => cid)
-			.then(async (imageCid: any) =>
+			.then(({ cid } /* : { cid: any } */) => cid)
+			.then(async (imageCid /* : any */) =>
 				jsonString
 					? { jsonStringCid: (await ipfs.add(jsonString)).cid, imageCid }
-					: { imageCid }
+					: { imageCid /* , jsonStringCid: undefined */ }
 			)
 			.then(
-				({ imageCid, jsonStringCid }: { imageCid: any; jsonStringCid: any }) =>
-					getMintPayload(name, description, imageCid, jsonStringCid)
+				(
+					{
+						imageCid,
+						jsonStringCid,
+					} /* : { imageCid: any; jsonStringCid: any } */
+				) => getMintPayload(name, description, imageCid, jsonStringCid)
 			)
 			.then((payload: any) => sendMessage(payload, { onSuccess: resetForm }))
-			.catch(({ message }: Error) => alert.error(message)); */
+			.catch(({ message }: Error) => alert.error(message));
 	};
 
 	return (
