@@ -1,5 +1,5 @@
-import { useNFTMetadata, useSendNFTMessage, useNFTs } from './api';
+import { useNFT, useNFTs, useOwnerNFTs, useApprovedNFTs, useSendNFTMessage } from './api';
 import { useIPFS } from './context';
 import { useMetadata, useWasmMetadata} from './useMetadata';
 
-export { useNFTMetadata, useSendNFTMessage, useNFTs, useIPFS, useMetadata, useWasmMetadata };
+export { useMetadata, useWasmMetadata, useNFT, useNFTs, useOwnerNFTs, useApprovedNFTs, useSendNFTMessage, useIPFS };

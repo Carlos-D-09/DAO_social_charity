@@ -1,10 +1,12 @@
 import { HexString } from "@polkadot/util/types";
 
+type Params = {
+    id: string;
+}
+
 type Token = {
     approvedAccountIds: HexString[];
-    pressure: string;
-    ph: string;
-    residence: string;
+    description: string;
     id: string;
     media: string;
     name: string;
@@ -12,4 +14,10 @@ type Token = {
     reference: string;
 };
 
-export type { Token };
+type TokenDetails = {
+    waterFlow: number;
+    ph: number;
+    residence: string;
+};
+
+export type { Params, Token, TokenDetails };

@@ -1,11 +1,8 @@
-import stateMetaWasm from "assets/wasm/nft.meta.wasm";
-import { Token } from "types";
-import {
-	useAccount,
-	useReadWasmState,
-	useSendMessage,
-} from "@gear-js/react-hooks";
+import { useAccount, useReadWasmState, useSendMessage } from "@gear-js/react-hooks";
 import { ADDRESS } from "consts";
+import { Params, Token } from 'types';
+import { useParams } from 'react-router-dom';
+import stateMetaWasm from "assets/wasm/nft.meta.wasm";
 import { useMetadata, useWasmMetadata } from "./useMetadata";
 
 function useNFTMetadata() {
@@ -29,9 +26,39 @@ function useNFTState<T>(functionName: string, payload?: any) {
 	);
 }
 
+function useNFT() {
+	const { id } = useParams() as Params;
+	const { state } = useNFTState<Token>('token', id);
+	return state;
+  }
+
 function useNFTs() {
 	const { state, isStateRead } = useNFTState<Token[]>("all_tokens", null);
 	return { nfts: state, isNftStateRead: isStateRead };
 }
 
-export { useNFTMetadata, useSendNFTMessage, useNFTs };
+function useOwnerNFTs() {
+	const { account } = useAccount();
+	const owner = account?.decodedAddress;
+  
+	const { state, isStateRead } = useNFTState<Token[]>(
+	  'tokens_for_owner',
+	  owner,
+	);
+  
+	return { ownerNFTs: state, isOwnerNFTsRead: isStateRead };
+  }
+  
+  function useApprovedNFTs() {
+	const { account } = useAccount();
+	const decodedAddress = account?.decodedAddress;
+  
+	const { state, isStateRead } = useNFTState<Token[]>(
+	  'approved_tokens',
+	  decodedAddress,
+	);
+  
+	return { approvedNFTs: state, isApprovedNFTsRead: isStateRead };
+  }
+
+export { useNFT, useNFTs, useOwnerNFTs, useApprovedNFTs, useSendNFTMessage };
