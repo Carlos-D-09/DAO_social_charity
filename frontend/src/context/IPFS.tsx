@@ -1,4 +1,4 @@
-import { ADDRESS } from 'consts';
+/* import { ADDRESS } from 'consts';
 import { create, IPFSHTTPClient } from 'ipfs-http-client';
 import { createContext, ReactNode, useRef } from 'react';
 
@@ -15,4 +15,4 @@ function IPFSProvider({ children }: Props) {
   return <Provider value={ipfsRef.current}>{children}</Provider>;
 }
 
-export { IPFSContext, IPFSProvider };
+export { IPFSContext, IPFSProvider }; */

@@ -1,3 +1,3 @@
-import { IPFSContext, IPFSProvider } from './IPFS';
+/* import { IPFSContext, IPFSProvider } from './IPFS';
 
-export { IPFSContext, IPFSProvider };
+export { IPFSContext, IPFSProvider }; */

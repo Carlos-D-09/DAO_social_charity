@@ -1,6 +1,4 @@
 import { Loader } from "components";
-import { GetAllExtrinsics } from "components/GetAllExtrinsics";
-import { SendMessage } from "components/SendMessage";
 import { useNFTs } from "hooks/api";
 import { Enlace } from "Enlace";
 import { ReadState } from "components/ReadState";
@@ -123,26 +121,6 @@ export const data2 = {
 //-----------------------------------------------------------
 // Empiza codigo del componente Home
 function Home() {
-	const [chainData, setChain] = useState<string>();
-	const [nodeNameData, setNodeName] = useState<string>();
-	const [nodeVersionData, setNodeVersion] = useState<string>();
-
-	const nodeInformation = async () => {
-		const gearApi = await GearApi.create({
-			providerAddress: "wss://rpc-node.gear-tech.io",
-		});
-
-		const [chain, nodeName, nodeVersion] = await Promise.all([
-			gearApi.chain(),
-			gearApi.nodeName(),
-			gearApi.nodeVersion(),
-		]);
-
-		setChain(chain);
-		setNodeName(nodeName);
-		setNodeVersion(nodeVersion);
-	};
-
 	/* 	const nfts = useNFTs();
 	const { nfts: state, isNftStateRead: isStateRead } = useNFTs();
 	const isAnyNft = !!nfts?.length;
@@ -153,8 +131,6 @@ function Home() {
 				<NFT id={id} name={name} media={media} />
 			</li>
 		)); */
-
-		
 
 	const { nfts, isNftStateRead: isStateRead } = useNFTs();
 	const isAnyNft = nfts && nfts.length > 0;
@@ -170,62 +146,60 @@ function Home() {
 		return null;
 	};
 
-	const myData = {date: "10-50-69", ph: 6, water_flow: 10  };
-	const myDataJSON = JSON.stringify(myData);
-
+	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
+	const myDataJSON = JSON.stringify(myData); */
+	const myDataJSON =
+		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15}]';
 	console.log(myDataJSON);
 
 	const newData = JSON.parse(myDataJSON);
 	console.log(newData);
 
-	let dateContent = [];
-	let phContent = [];
-	let waterFlowContent = [];
+	// let dateContent: string[] = [];
+	const phContent: number[] = [];
+	const waterFlowContent: number[] = [];
 
-	for (var i = 0; i < newData.length; i++) {
-		dateContent = newData[i].date;
-		phContent = newData[i].ph;
-		waterFlowContent = newData[i].water_flow;
-		console.log("the date is: "+newData[i].date);
-		console.log("the ph is: "+newData[i].ph);
-		console.log("the water_flow is: "+newData[i].water_flow);
+	for (let i = 0; i < newData.length; i += 1) {
+		// dateContent.push(newData[i].date)
+		phContent.push(newData[i].ph);
+		waterFlowContent.push(newData[i].water_flow);
+		// console.log("the date is: " + newData[i].date);
+		console.log("the ph is: " + newData[i].ph);
+		console.log("the water_flow is: " + newData[i].water_flow);
 		console.log("");
-}
+	}
 
-console.log("Content1: "+dateContent);
-		console.log("Content2: "+phContent);
-		console.log("Content3: "+waterFlowContent);
-const dataProof = {
-	labels,
-	datasets: [
-		{
-			label: "ph",
-			data: phContent,
-			borderColor: "rgb(53, 162, 235)",
-			backgroundColor: "rgba(53, 162, 235, 0.5)",
-		},
-		{
-			label: "water_flow",
-			data: waterFlowContent,
-			borderColor: "rgb(53, 162, 235)",
-			backgroundColor: "rgba(53, 162, 235, 0.5)",
-		},
-	],
-};
+	// console.log("Content1: " + dateContent);
+	console.log("Content2: " + phContent.toString());
+	console.log("Content3: " + waterFlowContent[1].toString());
+	const dataProof = {
+		labels,
+		datasets: [
+			{
+				label: "ph",
+				data: phContent,
+				borderColor: "rgb(255, 99, 132)",
+				backgroundColor: "#0C2650",
+			},
+			{
+				label: "water_flow",
+				data: waterFlowContent /* labels.map(() =>
+					faker.datatype.number({ min: -1000, max: 1000 })
+				) */,
+				borderColor: "rgb(53, 162, 235)",
+				backgroundColor: "rgba(53, 162, 235, 0.5)",
+			},
+		],
+	};
 
-	console.log(newData.date);
+	/* console.log(newData.date);
 	console.log(newData.ph);
-	console.log(newData.water_flow);
+	console.log(newData.water_flow); */
 
 	return (
 		<>
 			<Enlace title="Water NFT" />
 			<div className="card">
-				{/* <h3>Node Data</h3>
-				<p>Red: {chainData}</p>
-				<p>Nodo: {nodeNameData}</p>
-				<p>Version del nodo:{nodeVersionData}</p>
-				<Button text="Get Node Information" onClick={nodeInformation} /> */}
 				<ReadState />
 				{isStateRead ? (
 					<>
