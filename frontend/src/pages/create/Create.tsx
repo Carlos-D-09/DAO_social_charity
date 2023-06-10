@@ -35,10 +35,10 @@ function Create() {
 
     ipfs
       .add(genericReport)
-      .then(({ cid }) => cid)
-      .then(async (imageCid) => (jsonString ? { jsonStringCid: (await ipfs.add(jsonString)).cid, imageCid } : { imageCid }))
-      .then(({ imageCid, jsonStringCid }) => getMintPayload(name, description, imageCid, jsonStringCid))
-      .then((payload) => sendMessage(payload, { onSuccess: resetForm }))
+      .then(({ cid }: {cid: any}) => cid)
+      .then(async (imageCid: any) => (jsonString ? { jsonStringCid: (await ipfs.add(jsonString)).cid, imageCid } : { imageCid }))
+      .then(({ imageCid, jsonStringCid }:{ imageCid: any, jsonStringCid: any }) => getMintPayload(name, description, imageCid, jsonStringCid))
+      .then((payload:any) => sendMessage(payload, { onSuccess: resetForm }))
       .catch(({ message }: Error) => alert.error(message));
   };
 
