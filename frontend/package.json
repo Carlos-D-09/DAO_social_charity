@@ -25,7 +25,6 @@
 		"chart.js": "^3.9.1",
 		"clsx": "1.2.1",
 		"faker": "^5.5.3",
-		"fs": "^0.0.1-security",
 		"ipfs-http-client": "57.0.1",
 		"react": "18.2.0",
 		"react-chartjs-2": "^4.3.1",
@@ -74,5 +73,8 @@
 		"eslint-plugin-react": "7.32.2",
 		"eslint-plugin-react-hooks": "4.6.0",
 		"react-app-rewired": "^2.2.1"
+	},
+	"lint-staged": {
+		"./**/*.{js,css,ts,tsx}": "eslint --fix"
 	}
 }
