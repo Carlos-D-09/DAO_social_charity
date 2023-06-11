@@ -9,7 +9,7 @@
 <hr>
 
 ## Description
-Smart contract made for the Water Support dApp, using the template for NFT provided by the gear team.
+Smart contract made for the Water Support dApp.
 
 ## Building Locally
 
