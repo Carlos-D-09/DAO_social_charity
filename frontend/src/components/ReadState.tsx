@@ -1,5 +1,4 @@
 import { getProgramMetadata } from "@gear-js/api";
-import { Button } from "@gear-js/ui";
 import { useState } from "react";
 import { useApi, useAlert } from "@gear-js/react-hooks";
 import { AnyJson } from "@polkadot/types/types";
@@ -76,7 +75,14 @@ function ReadState() {
 				<p className={styles.data}>Waterflow: {waterflow}</p> */}
 			</center>
 
-			<Button text="Get Full State" onClick={getState} />
+			<button type="button" className={styles.button} onClick={getState}>
+				Get Full State
+			</button>
+			{/* 			<button
+				className={styles.button}
+				text="Get Full State"
+				onClick={getState}
+			/> */}
 		</div>
 	);
 }

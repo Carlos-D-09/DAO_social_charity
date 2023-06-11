@@ -15,7 +15,6 @@ function Header({ isAccountVisible }: Props) {
 	return (
 		<header className={styles.header}>
 			<Logo />
-			{account && <CreateLink />}
 			{isAccountVisible && <Account />}
 		</header>
 	);

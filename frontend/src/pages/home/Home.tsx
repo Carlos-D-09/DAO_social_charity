@@ -228,8 +228,7 @@ function Home() {
 		<>
 			<Enlace title="Water NFT" />
 			<div className="card">
-				<ReadState />
-				<h2>NFTs</h2>
+				<h2 style={{ marginTop: "30px" }}>NFTs</h2>
 				{account && (
 					<Filter list={FILTERS} value={filter} onChange={setFilter} />
 				)}
@@ -237,9 +236,11 @@ function Home() {
 					/* isStateRead */ isEachNftLoaded ? (
 						<>
 							{isAnyNft && <ul className={styles.list}>{NFTs}</ul>}
-							{!isAnyNft && (
-								/* <h2>There are no NFTs at the moment</h2> */ <InfoText text="There are no NFTs at the moment." />
-							)}
+							{
+								!isAnyNft && (
+									<h2>There are no NFTs at the moment</h2>
+								) /* <InfoText text="There are no NFTs at the moment." /> */
+							}
 						</>
 					) : (
 						<Loader />
@@ -247,22 +248,27 @@ function Home() {
 				}
 			</div>
 			<Enlace title="Water Statistics" />
-			<div className={styles.fondo}>
-				<div className={styles.container_btn_register}>
-					<img className={styles.arrow} src={arrow} alt="" />
-					<Link to="/register">
-						<button className={styles.button} type="button">
-							Register
-						</button>
-					</Link>
+			{account && (
+				<div className={styles.fondo}>
+					<div className={styles.container_btn_register}>
+						<img className={styles.arrow} src={arrow} alt="" />
+						<Link to="/create">
+							<button className={styles.button} type="button">
+								Register
+							</button>
+						</Link>
+					</div>
+					<Line
+						style={{ marginBottom: "200px" }}
+						options={options1}
+						data={dataProof}
+					/>
+					<Line options={options2} data={dataProof} />
 				</div>
-				<Line
-					style={{ marginBottom: "200px" }}
-					options={options1}
-					data={dataProof}
-				/>
-				<Line options={options2} data={dataProof} />
-			</div>
+			)}
+			<Enlace title="Get state" />
+			{!account && <h2>statistics not available</h2>}
+			{account && <ReadState />}
 		</>
 	);
 }

@@ -1,16 +1,17 @@
-@use '@gear-js/ui/variables' as *;
+@use "@gear-js/ui/variables" as *;
 
 .wallet {
-  display: flex;
-  align-items: center;
-  position: relative;
+	display: flex;
+	align-items: center;
+	position: relative;
 }
 
 .balance {
-  margin-right: 25px;
-  font-size: $fontSizeMedium;
+	margin-right: 25px;
+	font-size: $fontSizeMedium;
 }
 
 .currency {
-  color: $textColorSecondary;
+	color: var(--text-color);
+	font-weight: bold;
 }
