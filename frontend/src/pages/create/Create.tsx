@@ -65,7 +65,7 @@ function Create() {
 					} /* : { imageCid: any; jsonStringCid: any } */
 				) => getMintPayload(name, description, imageCid, jsonStringCid)
 			)
-			.then((payload: any) => sendMessage(payload, { onSuccess: resetForm }))
+			.then((payload/* : any */) => sendMessage(payload, { onSuccess: resetForm }))
 			.catch(({ message }: Error) => alert.error(message));
 	};
 

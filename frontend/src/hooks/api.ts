@@ -6,8 +6,8 @@ import {
 import { ADDRESS } from "consts";
 import { Params, Token } from "types";
 import { useParams } from "react-router-dom";
-import stateMetaWasm from "assets/wasm/nft.meta.wasm";
-import metaTxt from "assets/meta/nft.meta.txt";
+import stateMetaWasm from "assets/wasm/state.meta.wasm";
+import metaTxt from "assets/meta/meta.txt";
 import { useMetadata, useWasmMetadata } from "./useMetadata";
 // import moduleName from "../assets/wasm/nft.meta.wasm";
 
@@ -33,8 +33,10 @@ function useNFT() {
 }
 
 function useNFTs() {
-	const { state, isStateRead } = useNFTState<Token[]>("all_tokens", null);
-	return { nfts: state, isNftStateRead: isStateRead };
+	/* const { state, isStateRead } = useNFTState<Token[]>("all_tokens", null);
+	return { nfts: state, isNftStateRead: isStateRead }; */
+	const { state } = useNFTState<Token[]>("all_tokens", null);
+	return state;
 }
 
 function useOwnerNFTs() {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { getProgramMetadata, ProgramMetadata } from "@gear-js/api";
 import { Buffer } from "buffer";
-import { HexString } from "@polkadot/util/types";
+// import { HexString } from "@polkadot/util/types";
 import { useAlert } from "@gear-js/react-hooks";
 
 export const useMetadata = (source: RequestInfo | URL /* source: string */) => {
 	const [data, setData] = useState<ProgramMetadata>();
-	const alert = useAlert();
+	// const alert = useAlert();
 
 	useEffect(() => {
 		fetch(source)

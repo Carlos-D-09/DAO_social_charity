@@ -7,7 +7,11 @@ import { ReadState } from "components/ReadState";
 import { Link } from "react-router-dom";
 import { GearApi } from "@gear-js/api";
 import { Button } from "@gear-js/ui";
-import { useNFTs, useWasmMetadata, useOwnerNFTs, useApprovedNFTs } from "hooks";
+import {
+	useNFTs,
+	/* useWasmMetadata, */ useOwnerNFTs,
+	useApprovedNFTs,
+} from "hooks";
 import { useAccount } from "@gear-js/react-hooks";
 import faker from "faker";
 import {
@@ -145,8 +149,8 @@ function Home() {
 
 	// const { nfts, isNftStateRead: isStateRead } = useNFTs();
 	// const isAnyNft = nfts && nfts.length > 0;
-	/* 
-	const getNFTs = () => {
+
+	/* const getNFTs = () => {
 		if (nfts) {
 			return nfts.map(({ name, id, reference }) => (
 				<li key={id}>
@@ -156,10 +160,13 @@ function Home() {
 		}
 		return null;
 	}; */
+	const list = getList();
+	console.log("list:", list);
 	const getNFTs = () => {
-		const list = getList();
+		// const list = getList();
+		// console.log("list:", list);
 		if (Array.isArray(list)) {
-			return list?.map(({ id, name, media, reference }) => (
+			return getList()?.map(({ id, name, media, reference }) => (
 				<li key={id}>
 					<NFT id={id} name={name} media={media} reference={reference} />
 				</li>
@@ -167,6 +174,12 @@ function Home() {
 		}
 		return null;
 	};
+	/* 	const getNFTs = () =>
+		getList()?.map(({ id, name, media, reference }) => (
+			<li key={id}>
+				<NFT id={id} name={name} media={media} reference={reference} />
+			</li>
+		)); */
 
 	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
 	const myDataJSON = JSON.stringify(myData); */
@@ -223,6 +236,11 @@ function Home() {
 	const isEachNftLoaded =
 		nfts && (account ? isOwnerNFTsRead && isApprovedNFTsRead : true);
 	const isAnyNft = !!NFTs?.length;
+
+	console.log("nft", nfts);
+	/* console.log("owner", ownerNFTs);
+	console.log("aproved", approvedNFTs);
+	console.log(NFTs); */
 
 	return (
 		<>
