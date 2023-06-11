@@ -284,9 +284,10 @@ function Home() {
 					<Line options={options2} data={dataProof} />
 				</div>
 			)}
+			{!account && <h2>Statistics not available</h2>}
 			<Enlace title="Get state" />
-			{!account && <h2>statistics not available</h2>}
 			{account && <ReadState />}
+			{!account && <h2>Sate not available</h2>}
 		</>
 	);
 }

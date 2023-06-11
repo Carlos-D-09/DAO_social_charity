@@ -3,7 +3,6 @@
 
 .heading {
 	margin-bottom: 50px;
-	// TODO: replace w/ @gear-js/ui
 	font-family: Syncopate, sans-serif;
 	font-size: 32px;
 	line-height: 40px;
@@ -11,9 +10,15 @@
 }
 
 .main {
-	display: inline-grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	display: grid;
+	// grid-template-columns: repeat(2, minmax(0, 2fr));
+	grid-template-columns: repeat(auto-fill, minmax(600px, 2fr));
+	/* grid-template-columns: 1fr 1fr ;
+	grid-template-rows: repeat(1, 1fr); */
+	/* grid-auto-rows: minmax(10px, 80%);
+	grid-auto-columns: minmax(100px, 100px); */
 	column-gap: 30px;
+	grid-gap: 60px;
 }
 
 .details {

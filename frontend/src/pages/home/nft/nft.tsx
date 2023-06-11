@@ -11,16 +11,20 @@ type Props = {
 
 function NFT({ id, name, media, reference }: Props) {
 	const to = `/nft/${id}`;
-	const src = getIpfsAddress(media);
 	const cidRef = reference;
 	const text = `#${id}`;
 	return (
-		<Link to={to}>
-			<img src={src} alt={name} className={styles.image} />
-			<h3>{name}</h3>
-			<p>{text}</p>
-			<p>{cidRef}</p>
-		</Link>
+		<div className={styles.container_nft}>
+			<Link className={styles.nft} to={to}>
+				<h3>{name}</h3>
+				<p>
+					<span className={styles.atribut}>Number:</span> {text}
+				</p>
+				<p>
+					<span className={styles.atribut}>Reference:</span> {cidRef}
+				</p>
+			</Link>
+		</div>
 	);
 }
 

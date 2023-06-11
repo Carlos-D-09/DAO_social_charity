@@ -32,3 +32,19 @@
 .text {
 	color: $textColorSecondary;
 }
+
+.nft {
+	background-color: red;
+}
+
+.atribut {
+	font-weight: bold;
+	color: var(--color-soft);
+}
+
+.container_nft {
+	background-color: var(--second-color);
+	padding: 8px;
+	border-radius: 8px;
+	height: 100%;
+}
