@@ -88,7 +88,7 @@ export const options2 = {
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 ChartJS.defaults.borderColor = "#0C2650";
 ChartJS.defaults.color = "#ECECEC";
-export const data1 = {
+/* export const data1 = {
 	labels,
 	datasets: [
 		{
@@ -124,13 +124,30 @@ export const data2 = {
 			backgroundColor: "rgba(53, 162, 235, 0.5)",
 		},
 	],
-};
+}; */
 
 //-----------------------------------------------------------
 // Empiza codigo del componente Home
 function Home() {
-	const [filter, setFilter] = useState("All");
-	const { account } = useAccount();
+	/* 	const [chainData, setChain] = useState<string>();
+	const [nodeNameData, setNodeName] = useState<string>();
+	const [nodeVersionData, setNodeVersion] = useState<string>();
+
+	const nodeInformation = async () => {
+		const gearApi = await GearApi.create({
+			providerAddress: "wss://rpc-node.gear-tech.io",
+		});
+
+		const [chain, nodeName, nodeVersion] = await Promise.all([
+			gearApi.chain(),
+			gearApi.nodeName(),
+			gearApi.nodeVersion(),
+		]);
+
+		setChain(chain);
+		setNodeName(nodeName);
+		setNodeVersion(nodeVersion);
+	}; */
 
 	const nfts = useNFTs();
 	const { ownerNFTs, isOwnerNFTsRead } = useOwnerNFTs();
@@ -242,13 +259,77 @@ function Home() {
 	console.log("aproved", approvedNFTs);
 	console.log(NFTs); */
 
+	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
+	const myDataJSON = JSON.stringify(myData); */
+	const myDataJSON =
+		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15},{"date": "10-60-79", "ph": 10, "water_flow": 25},{"date": "10-60-79", "ph": 2, "water_flow": 55},{"date": "10-60-79", "ph": 20, "water_flow": 5}]';
+	// console.log(myDataJSON);
+
+	const newData = JSON.parse(myDataJSON);
+	// console.log(newData);
+
+	const dateContent: string[] = [];
+	const phContent: number[] = [];
+	const waterFlowContent: number[] = [];
+
+	for (let i = 0; i < newData.length; i += 1) {
+		dateContent.push(newData[i].date);
+		phContent.push(newData[i].ph);
+		waterFlowContent.push(newData[i].water_flow);
+		/* console.log("the date is: " + newData[i].date);
+		console.log("the ph is: " + newData[i].ph);
+		console.log("the water_flow is: " + newData[i].water_flow);
+		console.log(""); */
+	}
+
+	// console.log("Content1: " + dateContent);
+	/* console.log("Content2: " + phContent.toString());
+	console.log("Content3: " + waterFlowContent.toString()); */
+
+	const labelsProof = dateContent;
+
+	const dataProof = {
+		labels: labelsProof,
+		datasets: [
+			{
+				label: "ph",
+				data: phContent,
+				borderColor: "rgb(255, 99, 132)",
+				backgroundColor: "#0C2650",
+			},
+			{
+				label: "water_flow",
+				data: waterFlowContent /* labels.map(() =>
+					faker.datatype.number({ min: -1000, max: 1000 })
+				) */,
+				borderColor: "rgb(53, 162, 235)",
+				backgroundColor: "rgba(53, 162, 235, 0.5)",
+			},
+		],
+	};
+
+	/* 	console.log(newData.date);
+	console.log(newData.ph);
+	console.log(newData.water_flow); */
+
 	return (
 		<>
 			<Enlace title="Water NFT" />
 			<div className="card">
-				<h2 style={{ marginTop: "30px" }}>NFTs</h2>
-				{account && (
-					<Filter list={FILTERS} value={filter} onChange={setFilter} />
+				{/* <h3>Node Data</h3>
+				<p>Red: {chainData}</p>
+				<p>Nodo: {nodeNameData}</p>
+				<p>Version del nodo:{nodeVersionData}</p>
+				<Button text="Get Node Information" onClick={nodeInformation} /> */}
+				<ReadState />
+				<SendMessage />
+				{isStateRead ? (
+					<>
+						{isAnyNft && <ul className={styles.list}>{getNFTs()}</ul>}
+						{!isAnyNft && <h2>There are no NFTs at the moment</h2>}
+					</>
+				) : (
+					<Loader />
 				)}
 				{
 					/* isStateRead */ isEachNftLoaded ? (
@@ -266,28 +347,22 @@ function Home() {
 				}
 			</div>
 			<Enlace title="Water Statistics" />
-			{account && (
-				<div className={styles.fondo}>
-					<div className={styles.container_btn_register}>
-						<img className={styles.arrow} src={arrow} alt="" />
-						<Link to="/create">
-							<button className={styles.button} type="button">
-								Register
-							</button>
-						</Link>
-					</div>
-					<Line
-						style={{ marginBottom: "200px" }}
-						options={options1}
-						data={dataProof}
-					/>
-					<Line options={options2} data={dataProof} />
+			<div className={styles.fondo}>
+				<div className={styles.container_btn_register}>
+					<img className={styles.arrow} src={arrow} alt="" />
+					<Link to="/register">
+						<button className={styles.button} type="button">
+							Register
+						</button>
+					</Link>
 				</div>
-			)}
-			{!account && <h2>Statistics not available</h2>}
-			<Enlace title="Get state" />
-			{account && <ReadState />}
-			{!account && <h2>Sate not available</h2>}
+				<Line
+					style={{ marginBottom: "200px" }}
+					options={options1}
+					data={dataProof}
+				/>
+				<Line options={options2} data={dataProof} />
+			</div>
 		</>
 	);
 }

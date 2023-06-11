@@ -1,17 +1,21 @@
-import { Button, Input } from "@gear-js/ui";
+import { useAccount } from "@gear-js/react-hooks";
+import { useSendNFTMessage } from "hooks/api";
 import { useState } from "react";
-// import { useAlert } from "@gear-js/react-hooks";
-import { useForm } from "react-hook-form";
-import { useIPFS, useSendNFTMessage, /* useWasmMetadata */ } from "hooks";
-import fs from "fs";
-import { getMintPayload } from "utils";
+import { useNavigate } from "react-router-dom";
+import { Enlace } from "Enlace";
+import { Button, FileInput, Input } from "@gear-js/ui";
 import styles from "./Register.module.scss";
 
-type Values = { waterFlow: number; ph: number; residence: String };
-const defaultValues = { water_flow: 0, ph: 0, residence: "" };
+const NftInitialState = {
+	pressure: "",
+	ph: "",
+	residence: "",
+};
 
-function getCurrentDate(): string {
-	const currentDate = new Date();
+function Register() {
+	const [nftForm, setNftForm] = useState(NftInitialState);
+	const [image, setImage] = useState<File | null>(null);
+	const { pressure, ph, residence } = nftForm;
 
 	const day = String(currentDate.getDate()).padStart(2, "0");
 	const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -32,37 +36,12 @@ function Register() {
 	const sendMessage = useSendNFTMessage();
 	// console.log(sendMessage);
 
-/* 	const metadata = useWasmMetadata("assets/wasm/nft.meta.wasm");
-
-	console.log(metadata); */
-
-	const onSubmit = async (data: Values) => {
-		const { waterFlow, ph, residence } = data;
-
-		const jsonObject = {
-			wh: waterFlow,
-			ph_data: ph,
-			res: residence,
-			date: getCurrentDate(),
-		};
-
-		const JSONstring = JSON.stringify(jsonObject);
-
-		const details = "";
-		ipfs
-			.add(JSONstring)
-			.then(({ cid }: { cid: any }) => cid)
-			.then(async (jsonCid: any) =>
-				/* details */ JSONstring
-					? { detailsCid: (await ipfs.add(details)).cid, jsonCid }
-					: { jsonCid }
-			)
-			.then(({ jsonCid, detailsCid }: { jsonCid: any; detailsCid?: any }) =>
-				getMintPayload("Test 1", "This is a test", jsonCid, detailsCid)
-			)
-			.then((payload: any) => sendMessage(payload, { onSuccess: reset }));
-		// .catch(({ message }: Error) => alert.error(message));
+	const resetForm = () => {
+		setNftForm(NftInitialState);
+		setImage(null);
 	};
+
+
 
 	return (
 		<>
@@ -91,15 +70,64 @@ function Register() {
 						<Input
 							label="Residence"
 							className={styles.input}
-							{...register("residence", { required: "Residence is required" })}
+							id="domicilio"
+							type="text"
+							required
+							value={residence}
+							onChange={handleInputChange}
 						/>
-						<p className={styles.error}>{errors.residence?.message}</p>
-					</div>
+					</li>
+					<li>
+						<FileInput
+							label="Image"
+							className={styles.input}
+							onChange={(value: File | undefined) => setImage(value || null)}
+						/>
+					</li>
+				</ul>
+				<div>
+					<Button type="submit" text="Create" className={styles.button} />
+					<button type="submit" className={styles.button}>
+						Submit
+					</button>
+				</div>
+			</form>
+		</>
+	);
 
-					<Button type="submit" text="Submit" className={styles.button} block />
+	/* 	return (
+		<>
+			<h2 className={styles.heading}> Create NFT</h2>
+			<div className={styles.main}>
+				<form className={styles.from}>
+					...
+					<div className={styles.item}>
+						<FileInput
+							label="image"
+							className={styles.input}
+							onChange={setImage}
+						/>
+						{image ? (
+							<div className="image-preview">
+								<img
+									src={URL.createObjectURL(image)}
+									alt="nft"
+									style={{ width: 100, height: 100 }}
+								/>
+							</div>
+						) : (
+							<p>No image set for this NFT</p>
+						)}
+					</div>
+					<Button type="submit" text="Create" className={styles.button} />
 				</form>
 			</div>
 		</>
-	);
+	); */
 }
+
+/* function PreviewNft() {
+
+} */
+
 export { Register };
