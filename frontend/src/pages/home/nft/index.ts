@@ -1,3 +1,3 @@
-import { NFT } from "./NFT";
+import { NFT } from "./nft";
 
 export { NFT };
