@@ -25,7 +25,11 @@ import {
 	Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+<<<<<<< HEAD
 import { NFT } from "./nft/NFT";
+=======
+import { NFT } from "../nft";
+>>>>>>> backend_connection
 import { Filter } from "./filter";
 import arrow from "../../assets/images/arrow.png";
 import styles from "./Home.module.scss";
