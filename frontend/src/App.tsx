@@ -3,7 +3,6 @@ import { Routing } from "pages";
 import { Header, Footer, ApiLoader } from "components";
 import { withProviders } from "hocs";
 import "App.scss";
-import { Enlace } from "Enlace";
 import waves from "./assets/images/icons/water-waves.png";
 
 function Component() {

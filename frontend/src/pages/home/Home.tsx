@@ -1,13 +1,18 @@
-import { Loader } from "components";
-import { GetAllExtrinsics } from "components/GetAllExtrinsics";
-import { SendMessage } from "components/SendMessage";
-import { useNFTs } from "hooks/api";
+import { useState } from "react";
+import { InfoText, Loader } from "components";
+// import { /* InfoText */ useNFTs } from "hooks/api";
+import { FILTERS } from "consts";
 import { Enlace } from "Enlace";
 import { ReadState } from "components/ReadState";
 import { Link } from "react-router-dom";
 import { GearApi } from "@gear-js/api";
-import { useState } from "react";
 import { Button } from "@gear-js/ui";
+import {
+	useNFTs,
+	/* useWasmMetadata, */ useOwnerNFTs,
+	useApprovedNFTs,
+} from "hooks";
+import { useAccount } from "@gear-js/react-hooks";
 import faker from "faker";
 import {
 	Chart as ChartJS,
@@ -20,9 +25,10 @@ import {
 	Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import styles from "./Home.module.scss";
+import { NFT } from "./nft";
+import { Filter } from "./filter";
 import arrow from "../../assets/images/arrow.png";
-import { NFT } from "./nft/nft";
+import styles from "./Home.module.scss";
 
 ChartJS.register(
 	CategoryScale,
@@ -143,30 +149,115 @@ function Home() {
 		setNodeVersion(nodeVersion);
 	}; */
 
-	/* 	const nfts = useNFTs();
-	const { nfts: state, isNftStateRead: isStateRead } = useNFTs();
-	const isAnyNft = !!nfts?.length;
+	const nfts = useNFTs();
+	const { ownerNFTs, isOwnerNFTsRead } = useOwnerNFTs();
+	const { approvedNFTs, isApprovedNFTsRead } = useApprovedNFTs();
 
-	const getNFTs = () =>
-		nfts?.map(({ name, id, media }) => (
-			<li key={id}>
-				<NFT id={id} name={name} media={media} />
-			</li>
-		)); */
+	const getList = () => {
+		switch (filter) {
+			case "My":
+				return ownerNFTs;
+			case "Approved":
+				return approvedNFTs;
+			default:
+				return nfts;
+		}
+	};
 
-	const { nfts, isNftStateRead: isStateRead } = useNFTs();
-	const isAnyNft = nfts && nfts.length > 0;
+	// const { nfts, isNftStateRead: isStateRead } = useNFTs();
+	// const isAnyNft = nfts && nfts.length > 0;
 
-	const getNFTs = () => {
+	/* const getNFTs = () => {
 		if (nfts) {
-			return nfts.map(({ name, id }) => (
+			return nfts.map(({ name, id, reference }) => (
 				<li key={id}>
-					<NFT id={id} name={name} />
+					<NFT id={id} name={name} reference={reference} />
+				</li>
+			));
+		}
+		return null;
+	}; */
+	const list = getList();
+	console.log("list:", list);
+	const getNFTs = () => {
+		// const list = getList();
+		// console.log("list:", list);
+		if (Array.isArray(list)) {
+			return getList()?.map(({ id, name, media, reference }) => (
+				<li key={id}>
+					<NFT id={id} name={name} media={media} reference={reference} />
 				</li>
 			));
 		}
 		return null;
 	};
+	/* 	const getNFTs = () =>
+		getList()?.map(({ id, name, media, reference }) => (
+			<li key={id}>
+				<NFT id={id} name={name} media={media} reference={reference} />
+			</li>
+		)); */
+
+	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
+	const myDataJSON = JSON.stringify(myData); */
+	const myDataJSON =
+		'[{"date": "10-50-69", "ph": 6, "water_flow": 12}, {"date": "10-60-79", "ph": 7, "water_flow": 15}]';
+	// console.log(myDataJSON);
+
+	const newData = JSON.parse(myDataJSON);
+	// console.log(newData);
+	/* 	const metadata = useWasmMetadata("assets/wasm/nft.meta.wasm");
+
+	console.log(metadata); */
+	// let dateContent: string[] = [];
+	const phContent: number[] = [];
+	const waterFlowContent: number[] = [];
+
+	for (let i = 0; i < newData.length; i += 1) {
+		// dateContent.push(newData[i].date)
+		phContent.push(newData[i].ph);
+		waterFlowContent.push(newData[i].water_flow);
+		// console.log("the date is: " + newData[i].date);
+		/* console.log("the ph is: ", newData[i].ph);
+		console.log("the water_flow is: ", newData[i].water_flow);
+		console.log(""); */
+	}
+
+	// console.log("Content1: " + dateContent);
+	/* console.log("Content2: ", phContent.toString());
+	console.log("Content3: ", waterFlowContent[1].toString()); */
+	const dataProof = {
+		labels,
+		datasets: [
+			{
+				label: "ph",
+				data: phContent,
+				borderColor: "rgb(255, 99, 132)",
+				backgroundColor: "#0C2650",
+			},
+			{
+				label: "water_flow",
+				data: waterFlowContent /* labels.map(() =>
+					faker.datatype.number({ min: -1000, max: 1000 })
+				) */,
+				borderColor: "rgb(53, 162, 235)",
+				backgroundColor: "rgba(53, 162, 235, 0.5)",
+			},
+		],
+	};
+
+	/* console.log(newData.date);
+	console.log(newData.ph);
+	console.log(newData.water_flow); */
+	const NFTs = getNFTs();
+	const isEachNftLoaded =
+		nfts && (account ? isOwnerNFTsRead && isApprovedNFTsRead : true);
+	const isAnyNft = !!NFTs?.length;
+
+	console.log("nft", nfts);
+	/* console.log("owner", ownerNFTs);
+	console.log("aproved", approvedNFTs);
+	console.log(NFTs); */
 
 	/* const myData = { date: "10-50-69", ph: 6, water_flow: 12 };
 	const myDataJSON = JSON.stringify(myData); */
@@ -240,8 +331,20 @@ function Home() {
 				) : (
 					<Loader />
 				)}
-				{/* 				<SendMessage />
-				<GetAllExtrinsics /> */}
+				{
+					/* isStateRead */ isEachNftLoaded ? (
+						<>
+							{isAnyNft && <ul className={styles.list}>{NFTs}</ul>}
+							{
+								!isAnyNft && (
+									<h2>There are no NFTs at the moment</h2>
+								) /* <InfoText text="There are no NFTs at the moment." /> */
+							}
+						</>
+					) : (
+						<Loader />
+					)
+				}
 			</div>
 			<Enlace title="Water Statistics" />
 			<div className={styles.fondo}>

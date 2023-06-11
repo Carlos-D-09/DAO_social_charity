@@ -17,14 +17,24 @@ function Register() {
 	const [image, setImage] = useState<File | null>(null);
 	const { pressure, ph, residence } = nftForm;
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setNftForm(prevForm => ({ ...prevForm, [name]: value }));
-	};
+	const day = String(currentDate.getDate()).padStart(2, "0");
+	const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+	const year = String(currentDate.getFullYear());
 
-	const { account } = useAccount();
-	const navigate = useNavigate();
+	return `${day}-${month}-${year}`;
+}
+
+function Register() {
+	const { formState, register, handleSubmit, reset } = useForm<Values>({
+		defaultValues,
+	});
+	const { errors } = formState;
+
+	// const alert = useAlert();
+	const ipfs = useIPFS();
+	// console.log(ipfs);
 	const sendMessage = useSendNFTMessage();
+	// console.log(sendMessage);
 
 	const resetForm = () => {
 		setNftForm(NftInitialState);
@@ -35,35 +45,30 @@ function Register() {
 
 	return (
 		<>
-			<Enlace title="Register your data water" />
-			<form className={styles.form} /* action="/" onSubmit={register} */>
-				<ul>
-					<li>
-						<p>Pressure</p>
-						<input
+			<h2 className={styles.heading}>Record</h2>
+			<div className={styles.main}>
+				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+					<div className={styles.item}>
+						<Input
+							label="Water Flow"
 							className={styles.input}
-							id="pressure"
-							type="text"
-							required
-							/* value={pressure}
-							onChange={handleInputChange} */
+							{...register("waterFlow", { required: "Water flow is required" })}
 						/>
-						{/* <input type="email" id="mail" name="user_mail"> */}
-					</li>
-					<li>
-						<p>pH</p>
-						<input
+						<p className={styles.error}>{errors.waterFlow?.message}</p>
+					</div>
+
+					<div className={styles.item}>
+						<Input
+							label="Ph"
 							className={styles.input}
-							id="PH"
-							type="text"
-							required
-							/* value={ph}
-							onChange={handleInputChange} */
+							{...register("ph", { required: "Ph is required" })}
 						/>
-					</li>
-					<li>
-						<p>Residence</p>
-						<input
+						<p className={styles.error}>{errors.ph?.message}</p>
+					</div>
+
+					<div className={styles.item}>
+						<Input
+							label="Residence"
 							className={styles.input}
 							id="domicilio"
 							type="text"

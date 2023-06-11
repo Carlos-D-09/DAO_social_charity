@@ -5,7 +5,7 @@
 	"dependencies": {
 		"@gear-js/api": "0.30.6",
 		"@gear-js/react-hooks": "0.5.16",
-		"@gear-js/ui": "0.5.19",
+		"@gear-js/ui": "0.4.0",
 		"@mantine/form": "6.0.8",
 		"@polkadot/api": "10.3.4",
 		"@polkadot/extension-dapp": "0.45.5",
@@ -30,6 +30,7 @@
 		"react": "18.2.0",
 		"react-chartjs-2": "^4.3.1",
 		"react-dom": "18.2.0",
+		"react-hook-form": "7.43.5",
 		"react-router-dom": "6.10.0",
 		"react-scripts": "5.0.1",
 		"react-transition-group": "4.4.5",
@@ -73,5 +74,8 @@
 		"eslint-plugin-react": "7.32.2",
 		"eslint-plugin-react-hooks": "4.6.0",
 		"react-app-rewired": "^2.2.1"
+	},
+	"lint-staged": {
+		"./**/*.{js,css,ts,tsx}": "eslint --fix"
 	}
 }
